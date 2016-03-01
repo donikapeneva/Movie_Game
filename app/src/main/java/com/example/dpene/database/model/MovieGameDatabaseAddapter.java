@@ -1,4 +1,4 @@
-package com.example.dpene.database;
+package com.example.dpene.database.model;
 
 import android.content.ContentValues;
 import android.content.Context;

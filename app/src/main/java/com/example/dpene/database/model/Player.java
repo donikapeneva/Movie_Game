@@ -1,6 +1,5 @@
-package com.example.dpene.database;
+package com.example.dpene.database.model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,6 +11,7 @@ public class Player {
 
     private String name;
     private String password;
+    private String email;
     private Level reachedLevel;
     private int indexOfReachedLevel;
     private int reachedQuestion;
@@ -54,9 +54,15 @@ public class Player {
         }
     }
 
+    private void setEmail() {
+
+    }
+
     public String getName(){
         return this.name;
     }
+
+    public String getEmail() { return  this.email; }
 
     private void setPassword() {
         this.createPassword();

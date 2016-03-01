@@ -1,4 +1,4 @@
-package com.example.dpene.database;
+package com.example.dpene.database.model;
 
 public class RegularQuestion extends Question {
 
