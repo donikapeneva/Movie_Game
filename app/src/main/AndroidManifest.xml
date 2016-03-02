@@ -22,7 +22,7 @@
         <activity android:name=".MapActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegularQuestionActivity" />
-        <activity android:name=".SingUpActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".SaveLifeActivity"></activity>
     </application>
 
