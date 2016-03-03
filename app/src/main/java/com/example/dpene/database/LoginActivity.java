@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText username;
     private EditText password;
@@ -34,18 +34,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         Intent nextActivity;
-        switch(v.getId()){
+        switch (v.getId()) {
+            default:
             case R.id.login_button:
-//                check if user exist, valid password
+                // check if user exist, valid password
                 nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
-                startActivity(nextActivity);
-
                 break;
+
             case R.id.sign_in_reference_button:
-                nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
-                startActivity(nextActivity);
+                nextActivity = new Intent(LoginActivity.this, SignUpActivity.class);
                 break;
         }
+        startActivity(nextActivity);
     }
 }
 

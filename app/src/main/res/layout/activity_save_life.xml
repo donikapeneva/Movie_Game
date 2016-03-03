@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:orientation="vertical">
-    tools:context="com.example.dpene.dataBase.SaveLifeActivity">
+    android:orientation="vertical"
+    tools:context=".SaveLifeActivity">
 
     <ImageView
         android:id="@+id/image"
@@ -19,16 +19,16 @@
         android:layout_below="@+id/image"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:gravity="center"
-        android:text="\nYou have no more lives. Answer this question \n or you will go \n back to Level 1 ..."
+        android:text="@string/save_life"
         android:textColor="@color/colorPrimary"
-        android:textSize="30dp" />
+        android:textSize="@dimen/text_size" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:text="Tap to continue"
+        android:text="@string/tap_to_continue"
         android:textColor="@color/colorPrimary" />
 
 

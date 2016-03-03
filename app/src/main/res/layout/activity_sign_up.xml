@@ -42,7 +42,7 @@
                     android:layout_margin="@dimen/activity_vertical_margin"
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
-                    android:hint="Email"
+                    android:hint="@string/email"
                     android:textColor="@color/colorPrimaryDark"
                     android:inputType="textEmailAddress"
                     android:textColorHint="@color/colorQuestion" />
@@ -57,7 +57,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/colorPrimaryDark"
                     android:background="@color/colorPrimary"
-                    android:hint="Username"
+                    android:hint="@string/username"
                     android:textColorHint="@color/colorQuestion" />
 
 
@@ -69,7 +69,7 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_weight="1"
                     android:background="@color/colorPrimary"
-                    android:hint="Pasword"
+                    android:hint="@string/password"
                     android:textColor="@color/colorPrimaryDark"
                     android:inputType="textPassword"
                     android:textColorHint="@color/colorQuestion" />
@@ -83,7 +83,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/colorPrimaryDark"
                     android:background="@color/colorPrimary"
-                    android:hint="Repeat password"
+                    android:hint="@string/repeat_password"
                     android:inputType="textPassword"
                     android:textColorHint="@color/colorQuestion" />
 
@@ -94,7 +94,7 @@
                     android:layout_margin="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_weight="1"
-                    android:text="Sing up" />
+                    android:text="@string/sign_up" />
 
 
             </LinearLayout>

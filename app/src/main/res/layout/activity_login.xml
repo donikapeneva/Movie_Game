@@ -47,8 +47,10 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
-                        android:hint="Username"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:hint="@string/username"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorQuestion" />
 
                     <EditText
                         android:id="@+id/password"
@@ -57,9 +59,10 @@
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
-                        android:hint="Password"
-                        android:password="true"
-                        android:textColor="@color/colorPrimaryDark" />
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorQuestion" />
 
                     <Button
                         android:id="@+id/login_button"
@@ -67,7 +70,7 @@
                         android:layout_height="0dp"
                         android:layout_marginTop="@dimen/activity_vertical_margin"
                         android:layout_weight="1"
-                        android:text="Log in" />
+                        android:text="@string/log_in" />
 
                 </LinearLayout>
 
@@ -86,7 +89,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:background="@color/colorPrimaryDark"
-                    android:text="If it's your first time SING UP"
+                    android:text="@string/button_to_sign_up"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimary" />
 

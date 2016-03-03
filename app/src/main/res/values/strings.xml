@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">DataBase</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="button_to_sign_up">If it is your first time SIGN UP</string>
+
+    <string name="map">Map</string>
+    <string name="exit">Exit</string>
+    <string name="switch_user">Switch user</string>
+
+    <string name="save_life">You have no more lives. Answer this question \n or you will go \n back to Level 1 ...</string>
+    <string name="tap_to_continue">Tap to continue</string>
+
 </resources>
