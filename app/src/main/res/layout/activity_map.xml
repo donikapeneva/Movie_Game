@@ -15,7 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Level $$"
-        android:textSize="@dimen/activity_game_legend" />
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size" />
 
     <ImageView
         android:id="@+id/heart1"
@@ -42,6 +43,12 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/heart_icon" />
 
+    <ImageView
+        android:id="@+id/hogwarts_castle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/level"
+        android:src="@drawable/hogwarts_castle" />
 
 
 </RelativeLayout>
