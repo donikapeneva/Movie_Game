@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.dpene.database.model.UserManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -13,13 +16,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText password;
     private Button logIn;
     private Button signUp;
-
+    private UserManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        this.manager = UserManager.getInstance();
 
         this.username = (EditText) findViewById(R.id.username);
         this.password = (EditText) findViewById(R.id.password);
@@ -38,14 +42,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             default:
             case R.id.login_button:
                 // check if user exist, valid password
-                nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
+                if(manager.existsUser(username.getText().toString()) && manager.rightPassword( username.getText().toString(), password.getText().toString())) {
+                    nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
+                    startActivity(nextActivity);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_LONG).show();
+                }
                 break;
 
             case R.id.sign_in_reference_button:
                 nextActivity = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(nextActivity);
                 break;
         }
-        startActivity(nextActivity);
+
     }
 }
 

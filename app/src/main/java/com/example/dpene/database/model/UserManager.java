@@ -1,5 +1,9 @@
 package com.example.dpene.database.model;
 
+import android.widget.Toast;
+
+import com.example.dpene.database.SignUpActivity;
+
 import java.util.TreeMap;
 
 public class UserManager {
@@ -26,10 +30,10 @@ public class UserManager {
         //String email = text ot poleto email
         for (Player user : this.users.values()) {
             if (user.getEmail().equals(email)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean rightPassword(String username, String password) {
@@ -42,19 +46,24 @@ public class UserManager {
     }
 
 
-    public void registerNewUser(String email, String username, String password, String repeatPassword) {
+    public boolean registerNewUser(String email, String username, String password, String repeatPassword) {
 
         // ili vmesto if-ove i exceptioni.. tezi proverki da gi pravim v activity-to
         if (existsUser(username)) {
-            //tuk moje da hvurlq exception
+            //tuk moje da hvurlq exception + Toast
+
+            return false;
         }
         if (existsEmail(email)) {
             // tuk pak exception
+            return false;
         }
         if (!password.equals(repeatPassword)) {
             // pak exception
+            return false;
         }
-//        this.users.put(username,new Player(email, username, password));
+        this.users.put(username,new Player(email, username, password));
+        return true;
     }
 
 }

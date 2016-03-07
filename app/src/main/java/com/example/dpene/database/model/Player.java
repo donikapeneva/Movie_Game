@@ -18,6 +18,11 @@ public class Player {
     private List<Level> levels;
     private int lives;
 
+    public Player(String email, String username, String password){
+        this.email = email;
+        this.name = username;
+        this.password = password;
+    }
 
     public Player(List<Level> levels) {
         System.out.println("Enter a name:");
@@ -52,10 +57,6 @@ public class Player {
             }
             this.setName();
         }
-    }
-
-    private void setEmail() {
-
     }
 
     public String getName(){
