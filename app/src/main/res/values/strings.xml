@@ -13,8 +13,16 @@
     <string name="exit">Exit</string>
     <string name="switch_user">Switch user</string>
 
-    <string name="save_life">You have no more lives. Answer this question \n or you will go \n back to Level 1 ...</string>
+    <string name="save_life">You have no more lives. Answer this question \n or you will go \n back to Level 1 \&#8230; </string>
     <string name="tap_to_continue">Tap to continue</string>
+
+    <string name="letter_title">HOGWARTS SCHOOL of WITCHCRAFT and WIZARDRY</string>
+    <string name="letter_names">Headmaster: Albus Dumbledore\n
+        (Order of Merlin, First Class, Grand Sorc., Chf.Warlock, Supreme Mugwump, International Confed. of Wizards)</string>
+    <string name="letter_subject">We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.\n\n
+          Please tap to continue.\n\n
+          Your sincerely,</string>
+
 
     <string name="hogwarts_letter">HOGWARTS SCHOOL of WITCHCRAFT and WIZARDRY \n Headmaster: Albus Dumbledore\n
         (Order of Merlin, First Class, Grand Sorc., Chf.Warlock, Supreme Mugwump, International Confed. of Wizards)\n\n
@@ -23,8 +31,7 @@
           Please tap to continue.\n\n
           Your sincerely,
     </string>
-    <string name="minerva_signature">Minerva McGonagall
-    </string>
+    <string name="minerva_signature">Minerva McGonagall</string>
 
 
 

@@ -1,8 +1,7 @@
 package com.example.dpene.database.model;
 
-import android.widget.Toast;
 
-import com.example.dpene.database.SignUpActivity;
+import android.widget.Toast;
 
 import java.util.TreeMap;
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
     android:background="@drawable/map"
     tools:context=".LetterActivity">
 
@@ -23,17 +24,55 @@
             android:layout_weight="1"
             android:src="@drawable/hogwarts_logo" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:text="@string/hogwarts_letter"
+            android:layout_weight="1"
+            android:text="@string/letter_title"
             android:textColor="@color/colorPrimaryDark"
             android:layout_gravity="center"
             android:textSize="@dimen/activity_vertical_margin"
 
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/letter_names"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:textSize="@dimen/activity_vertical_margin"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Dear $"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:textSize="@dimen/activity_vertical_margin"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/letter_subject"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:textSize="@dimen/activity_vertical_margin"
+
+            />
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
