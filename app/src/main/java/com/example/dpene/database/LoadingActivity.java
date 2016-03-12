@@ -18,28 +18,20 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-//        implementaciq za progressbar-a
-//        progressBar = (ProgressBar) findViewById(R.id.loading_page_progressbar);
+        //implementaciq za progressbar-a
+        progressBar = (ProgressBar) findViewById(R.id.loading_page_progressbar);
 
 //        new Thread(new Runnable() {
-//            public void run() {
-//        while (true) {
-//            if (progressStatus < 100) {
-//                progressStatus += 1;
-//
-//                progressBar.setProgress(progressStatus);
-//
-//                try {
-//                    // Sleep for 200 milliseconds.
-//                    //Just to display the progress slowly
-//                    Thread.sleep(200);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
+ //           public void run() {
+        while (progressStatus < 100) {
 
-        // if user.getLevel() > 1 -> LetterActivity
-        // else  -> MapActivity
+           // progressBar.incrementProgressBy(20);
+            progressBar.setProgress(20);
+
+        }
+
+
+
 
                 Intent nextActivity = new Intent(this, LetterActivity.class);
                 startActivity(nextActivity);
