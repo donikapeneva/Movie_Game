@@ -1,5 +1,6 @@
 package com.example.dpene.database;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,7 +27,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         manager = UserManager.getInstance();
 
-        // zashto e null ??
         Bundle data = getIntent().getExtras();
 
         email = (EditText) findViewById(R.id.email);
@@ -61,7 +61,8 @@ public class SignUpActivity extends AppCompatActivity {
                     manager.registerUser(email.getText().toString(), username.getText().toString(),
                             password.getText().toString());
                     Toast.makeText(SignUpActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Intent nextActivity = new Intent(SignUpActivity.this, LoadingActivity.class);
+                    startActivity(nextActivity);
                 }
             }
 
