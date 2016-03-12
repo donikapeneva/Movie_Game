@@ -1,8 +1,7 @@
 package com.example.dpene.database;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,8 +26,12 @@ public class SignUpActivity extends AppCompatActivity {
 
         manager = UserManager.getInstance();
 
+        // zashto e null ??
+        Bundle data = getIntent().getExtras();
+
         email = (EditText) findViewById(R.id.email);
         username = (EditText) findViewById(R.id.username);
+        username.setText(data != null ? data.getString("username") : "");
         password = (EditText) findViewById(R.id.password);
         repeatedPassword = (EditText) findViewById(R.id.repeat_password);
 
@@ -36,14 +39,32 @@ public class SignUpActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(manager.registerNewUser(email.getText().toString(), username.getText().toString(),
-                        password.getText().toString(), repeatedPassword.getText().toString())) {
-                    Intent nextActivity = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(nextActivity);
-                } else {
-                    Toast.makeText(SignUpActivity.this, "Problem", Toast.LENGTH_SHORT).show();
+
+                boolean isCorrect = true;
+
+                if (manager.existsEmail(email.getText().toString())) {
+                    email.setError("This email is already used");
+                    isCorrect = false;
+                }
+
+                if (manager.existsUser(username.getText().toString())) {
+                    username.setError("This username is already taken");
+                    isCorrect = false;
+                }
+
+                if (!password.getText().toString().equals(repeatedPassword.getText().toString())) {
+                    repeatedPassword.setError("The passwords don't match");
+                    isCorrect = false;
+                }
+
+                if (isCorrect) {
+                    manager.registerUser(email.getText().toString(), username.getText().toString(),
+                            password.getText().toString(), repeatedPassword.getText().toString());
+                    Toast.makeText(SignUpActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
+
         });
 
 

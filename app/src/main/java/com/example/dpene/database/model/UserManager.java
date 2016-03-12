@@ -1,8 +1,5 @@
 package com.example.dpene.database.model;
 
-
-import android.widget.Toast;
-
 import java.util.TreeMap;
 
 public class UserManager {
@@ -44,25 +41,7 @@ public class UserManager {
         }
     }
 
-
-    public boolean registerNewUser(String email, String username, String password, String repeatPassword) {
-
-        // ili vmesto if-ove i exceptioni.. tezi proverki da gi pravim v activity-to
-        if (existsUser(username)) {
-            //tuk moje da hvurlq exception + Toast
-
-            return false;
-        }
-        if (existsEmail(email)) {
-            // tuk pak exception
-            return false;
-        }
-        if (!password.equals(repeatPassword)) {
-            // pak exception
-            return false;
-        }
-        this.users.put(username,new Player(email, username, password));
-        return true;
+    public void registerUser(String email, String username, String password) {
+        this.users.put(username, new Player(email, username, password));
     }
-
 }

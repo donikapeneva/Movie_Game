@@ -17,6 +17,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button logIn;
     private Button signUp;
     private UserManager manager;
+    private static final int REQUEST_CODE_FOR_SIGN_UP = 1;
+    private static final int REQUEST_CODE_FOR_LOADING = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // check if user exist, valid password
                 if(manager.existsUser(username.getText().toString()) && manager.rightPassword( username.getText().toString(), password.getText().toString())) {
                     nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
+                    nextActivity.putExtra("username", this.username.getText().toString());
                     startActivity(nextActivity);
                 } else {
                     Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_LONG).show();

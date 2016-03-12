@@ -37,8 +37,12 @@ public class LoadingActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //            } else {
-//                Intent nextActivity = new Intent(this, LetterActivity.class);
-//                startActivity(nextActivity);
+
+        // if user.getLevel() > 1 -> LetterActivity
+        // else  -> MapActivity
+
+                Intent nextActivity = new Intent(this, LetterActivity.class);
+                startActivity(nextActivity);
 //            }
 //        }
 //            }
