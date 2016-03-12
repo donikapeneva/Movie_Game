@@ -26,7 +26,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         manager = UserManager.getInstance();
 
-        // zashto e null ??
         Bundle data = getIntent().getExtras();
 
         email = (EditText) findViewById(R.id.email);
