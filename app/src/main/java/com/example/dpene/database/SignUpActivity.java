@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if (isCorrect) {
                     manager.registerUser(email.getText().toString(), username.getText().toString(),
-                            password.getText().toString(), repeatedPassword.getText().toString());
+                            password.getText().toString());
                     Toast.makeText(SignUpActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                     finish();
                 }
