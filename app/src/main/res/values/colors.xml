@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FFA026</color>
     <color name="colorQuestion">#b7b6b6</color>
+    <color name="letterText">#261701</color>
 
 </resources>
