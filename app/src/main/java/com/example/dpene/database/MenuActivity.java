@@ -36,6 +36,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 nextActivity = new Intent(this, MapActivity.class);
                 break;
             case R.id.exit_button:
+                //tuk ne trqbva li da mu zadadem da izlzia ot cqloto prilojenie, a ne da se vrushta kum logIn
                 // EXIT
                 nextActivity = new Intent(this, LoginActivity.class);
                 break;
