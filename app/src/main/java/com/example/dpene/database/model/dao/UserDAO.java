@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.dpene.database.model.DatabaseHelper;
 import com.example.dpene.database.model.Player;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class UserDAO implements IUserDAO {
 
@@ -22,20 +24,20 @@ public class UserDAO implements IUserDAO {
 
 
     @Override
-    public long addUser(Player user) {
+    public long addPlayer(Player player) {
 
         SQLiteDatabase db = dh.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        values.put(dh.NAME, user.getName());
-        values.put(dh.PASSWORD, user.getEmail());
-        values.put(dh.EMAIL, user.getPassword());
+        values.put(dh.NAME, player.getName());
+        values.put(dh.PASSWORD, player.getEmail());
+        values.put(dh.EMAIL, player.getPassword());
         //TODO maybe = 0 ?
-        values.put(dh.LEVEL, user.getLevel().getNumberOfLevel());
-        values.put(dh.QUESTION, user.getReachedQuestion());
+        values.put(dh.PL_LEVEL, player.getLevel().getNumberOfLevel());
+        values.put(dh.PL_QUESTION, player.getReachedQuestion());
 
-        long userId = db.insert(dh.TABLE_USER, null, values);
+        long userId = db.insert(dh.TABLE_PLAYER, null, values);
         db.close();
         return userId;
 
@@ -43,9 +45,9 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public Player getUser(String username) {
+    public Player getPlayer(String username) {
         SQLiteDatabase db = dh.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + dh.TABLE_USER
+        String selectQuery = "SELECT * FROM " + dh.TABLE_PLAYER
                 + "WHERE " + dh.NAME + " = \"" + username + "\"";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -56,45 +58,46 @@ public class UserDAO implements IUserDAO {
         String name = cursor.getString(cursor.getColumnIndex(dh.NAME));
         String password = cursor.getString(cursor.getColumnIndex(dh.PASSWORD));
         String email = cursor.getString(cursor.getColumnIndex(dh.EMAIL));
-        int level = cursor.getInt(cursor.getColumnIndex(dh.LEVEL));
-        int question = cursor.getInt(cursor.getColumnIndex(dh.QUESTION));
+        int level = cursor.getInt(cursor.getColumnIndex(dh.PL_LEVEL));
+        int question = cursor.getInt(cursor.getColumnIndex(dh.PL_QUESTION));
 
         Player player = new Player(email, name, password, level, question);
         db.close();
         return player;
     }
 
+
     @Override
-    public Player getUser(long id) {
+    public List<Player> getAllPlayers() {
+        ArrayList<Player> players = new ArrayList<Player>();
+        String query = "SELECT * FROM " + dh.TABLE_PLAYER;
+
         SQLiteDatabase db = dh.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + dh.TABLE_USER
-                + " WHERE " + dh.UID_USERNAME + " = \"" + id + "\"";
+        Cursor c = db.rawQuery(query, null);
 
-        Cursor c = db.rawQuery(selectQuery, null);
+        if(c.moveToFirst()){
+            do{
+                String username = c.getString(c.getColumnIndex(dh.NAME));
+                String password = c.getString(c.getColumnIndex(dh.PASSWORD));
+                String email = c.getString(c.getColumnIndex(dh.EMAIL));
+                int level = c.getInt(c.getColumnIndex(dh.PL_LEVEL));
+                int question = c.getInt(c.getColumnIndex(dh.PL_QUESTION));
 
-        if (c != null)
-            c.moveToFirst();
-
-        String username = c.getString(c.getColumnIndex(dh.NAME));
-        String password = c.getString(c.getColumnIndex(dh.PASSWORD));
-        String email = c.getString(c.getColumnIndex(dh.EMAIL));
-        int level = c.getInt(c.getColumnIndex(dh.LEVEL));
-        int question = c.getInt(c.getColumnIndex(dh.QUESTION));
-
-
-        Player player = new Player(email, username, password, level, question);
+                Player player = new Player(email, username, password, level, question);
+                players.add(player);
+            } while(c.moveToNext());
+        }
         db.close();
-        return player;
+        return players;
     }
 
     @Override
     public boolean checkUsername(String username) {
         SQLiteDatabase db = dh.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + dh.TABLE_USER
+        String selectQuery = "SELECT * FROM " + dh.TABLE_PLAYER
                 + " WHERE " + dh.NAME + " = \"" + username + "\"";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
-
 
         if (cursor != null && cursor.moveToFirst()) {
             db.close();
@@ -109,7 +112,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public boolean checkUserEmail(String email) {
         SQLiteDatabase db = dh.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + dh.TABLE_USER
+        String selectQuery = "SELECT * FROM " + dh.TABLE_PLAYER
                 + " WHERE " + dh.EMAIL + " = \"" + email + "\"";
 
         Cursor c = db.rawQuery(selectQuery, null);
@@ -128,28 +131,27 @@ public class UserDAO implements IUserDAO {
     public Player checkLogin(String username, String password) {
         SQLiteDatabase db = dh.getReadableDatabase();
 
-        String selectQuery = "SELECT * FROM " + dh.TABLE_USER
-                + " WHERE " + dh.EMAIL + " = \"" + username
+        String selectQuery = "SELECT * FROM " + dh.TABLE_PLAYER
+                + " WHERE " + dh.NAME + " = \"" + username
                 + "\" AND " + dh.PASSWORD + " = \"" + password + "\"";
 
         Cursor c = db.rawQuery(selectQuery, null);
 
-
-        Player user = null;
+        Player player = null;
 
         if (c.moveToFirst()) {
-            long id = c.getLong(c.getColumnIndex(dh.UID_USER));
+            long id = c.getLong(c.getColumnIndex(dh.UID_PLAYER));
             String uname = c.getString(c.getColumnIndex(dh.NAME));
             String upassword = c.getString(c.getColumnIndex(dh.PASSWORD));
-            String uemail = c.getString(c.getColumnIndex(dh.EMAIL));
-            int ulevel = c.getInt(c.getColumnIndex(dh.LEVEL));
-            int uquestion = c.getInt(c.getColumnIndex(dh.QUESTION));
+            String email = c.getString(c.getColumnIndex(dh.EMAIL));
+            int level = c.getInt(c.getColumnIndex(dh.PL_LEVEL));
+            int question = c.getInt(c.getColumnIndex(dh.PL_QUESTION));
 
-            user = new Player(uemail, upassword, uname, ulevel, uquestion);
-            user.setUserId(id);
+            player = new Player(email, upassword, uname, level, question);
+            player.setUserId(id);
         }
 
         db.close();
-        return user;
+        return player;
     }
 }

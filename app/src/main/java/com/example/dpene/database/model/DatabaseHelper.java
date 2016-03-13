@@ -10,46 +10,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "MOVIE_GAME_DATABASE";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // tables
-    public static final String TABLE_USER = "users";
+    public static final String TABLE_PLAYER = "player";
     public static final String TABLE_LEVEL = "level";
     public static final String TABLE_QUESTION = "question";
     public static final String TABLE_LOGIC_QUESTION = "logic_question";
 
     // id-s
-    public static final String UID_USER = "_id";
+    public static final String UID_PLAYER = "_id";
     public static final String UID_LEVEL = "level_id";
     public static final String UID_QUESTION = "question_id";
     public static final String UID_LOGIC_QUESTION = "logic_question_id";
 
-    // users table
+    // players table
     public static final String NAME = "username";
     public static final String PASSWORD = "password";
     public static final String EMAIL = "email";
-    public static final String LEVEL = "level";
-    public static final String QUESTION = "question";
+    public static final String PL_LEVEL = "level";
+    public static final String PL_QUESTION = "question";
 
-    private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " ("
-            + UID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+    private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_PLAYER + " ("
+            + UID_PLAYER + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + NAME + " TEXT UNIQUE, "
             + PASSWORD + " TEXT, "
             + EMAIL + " TEXT UNIQUE, "
-            + LEVEL + " INTEGER, "
-            + QUESTION + " INTEGER, "
-            + "FOREIGN KEY(" + LEVEL + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + "), "
-            + "FOREIGN KEY(" + QUESTION + ") REFERENCES " + TABLE_QUESTION + "(" + UID_QUESTION + ")"
+            + PL_LEVEL + " INTEGER, "
+            + PL_QUESTION + " INTEGER, "
+            + "FOREIGN KEY(" + PL_LEVEL + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + "), "
+            + "FOREIGN KEY(" + PL_QUESTION + ") REFERENCES " + TABLE_QUESTION + "(" + UID_QUESTION + ")"
             + ");";
 
 
     // level table
-    private static final String DESCRIPTION = "description";
+    private static final String LEVEL_DESCRIPTION = "description";
     private static final String NEXT_LEVEL = "next_level";
 
     private static final String CREATE_TABLE_LEVEL = "CREATE TABLE " + TABLE_LEVEL + " ("
             + UID_LEVEL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + DESCRIPTION + " TEXT, "
+            + LEVEL_DESCRIPTION + " TEXT, "
             + NEXT_LEVEL + " INTEGER, "
             + "FOREIGN KEY(" + NEXT_LEVEL + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + ") "
             + ");";
@@ -127,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LEVEL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIC_QUESTION);

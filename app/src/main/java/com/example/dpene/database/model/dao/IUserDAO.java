@@ -6,17 +6,14 @@ import java.util.List;
 
 public interface IUserDAO {
 
-    long addUser(Player user);
-    Player getUser(String username);
-    Player getUser(long id);
-    List<Player> getAllUsers();
+    long addPlayer(Player player);
+    Player getPlayer(String username);
 
-    // ako imame takiva opcii:
-//    void deleteUser(Player user);
-//    long updateUser(Player user);
+    // za budeshti update-i na igrata
+    List<Player> getAllPlayers();
 
     boolean checkUsername(String username);
     boolean checkUserEmail(String email);
-    Player checkLogin (String email, String password);
+    Player checkLogin (String username, String password);
 
 }
