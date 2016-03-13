@@ -106,8 +106,8 @@ public class Player {
         }
     }
 
-    public void winLifes(){
-        this.lives = MAX_LIVES;
+    public void winLives(){
+        this.lives = WON_LIVES;
     }
 
     private void goAhead() {

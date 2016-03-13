@@ -37,7 +37,7 @@ public class LogicalQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (answer.getText().toString().trim().equals(questionManager.getLogicQuestion().getRightAnswer())) {
-                    playerManager.getPlayer().winLifes();
+                    playerManager.getPlayer().winLives();
                     startActivity(new Intent(LogicalQuestionActivity.this, RebornActivity.class));
                 } else {
                     startActivity(new Intent(LogicalQuestionActivity.this, GameOverActivity.class));
