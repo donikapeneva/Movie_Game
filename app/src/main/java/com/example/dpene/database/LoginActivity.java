@@ -13,6 +13,7 @@ import com.example.dpene.database.model.PlayerManager;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String PLAYER_USERNAME = "playerUsername";
+    private static final int REQUEST_CODE_FOR_SIGN_UP = 1;
     private EditText username;
     private EditText password;
     private Button logIn;
@@ -52,10 +53,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.sign_in_reference_button:
                 Intent nextActivity = new Intent(LoginActivity.this, SignUpActivity.class);
                 nextActivity.putExtra("username", this.username.getText().toString());
-                startActivity(nextActivity);
+                startActivityForResult(nextActivity, REQUEST_CODE_FOR_SIGN_UP);
                 break;
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_FOR_SIGN_UP) {
+            if (resultCode == RESULT_OK) {
+                this.username.setText(data.getExtras().getString("username"));
+                this.password.setText(data.getExtras().getString("password"));
+            }
+        }
     }
 }
 

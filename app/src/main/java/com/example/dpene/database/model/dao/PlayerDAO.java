@@ -30,14 +30,12 @@ public class PlayerDAO implements IPlayerDAO {
         ContentValues values = new ContentValues();
 
         values.put(dh.NAME, player.getName());
-        values.put(dh.PASSWORD, player.getEmail());
-        values.put(dh.EMAIL, player.getPassword());
+        values.put(dh.EMAIL, player.getEmail());
+        values.put(dh.PASSWORD, player.getPassword());
 
         long userId = db.insert(dh.TABLE_PLAYER, null, values);
         db.close();
         return userId;
-
-
     }
 
     @Override

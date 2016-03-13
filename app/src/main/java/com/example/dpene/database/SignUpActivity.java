@@ -1,5 +1,6 @@
 package com.example.dpene.database;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -76,13 +77,17 @@ public class SignUpActivity extends AppCompatActivity {
 
                 //TODO
                 if (isCorrect) {
-                    if (manager.registerPlayer(email.getText().toString(), username.getText().toString(),
-                            password.getText().toString()) < 0) {
+                    if (manager.registerPlayer(uemail, uname, upassword) < 0) {
                         Toast.makeText(SignUpActivity.this, "-1", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     Toast.makeText(SignUpActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
+                    Intent data = new Intent();
+                    data.putExtra("username", uname);
+                    data.putExtra("password", upassword);
+
+                    setResult(RESULT_OK, data);
                     finish();
                 }
             }
