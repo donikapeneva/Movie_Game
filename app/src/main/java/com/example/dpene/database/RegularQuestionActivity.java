@@ -1,6 +1,7 @@
 package com.example.dpene.database;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,8 +43,9 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer3_button = (Button) findViewById(R.id.answer3_button);
         answer4_button = (Button) findViewById(R.id.answer4_button);
 
-       // playerDAO =  new PlayerDAO(this);
-       // this.currentPlayer = playerDAO.getPlayer(playerUsername);
+        //TODO initialize current player, Player Manager
+        // playerDAO =  new PlayerDAO(this);
+        // this.currentPlayer = playerDAO.getPlayer(playerUsername);
 
         regularQuestionDAO = new RegularQuestionDAO(this);
         this.regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
@@ -71,23 +73,31 @@ public class RegularQuestionActivity extends AppCompatActivity {
     public void onClick(View view){
         Button clicked = (Button) view;
         if(clicked.getText().equals(rightAnswer)){
-            //TODO dialog fragment to show him it was the right answer
+            //change the color of the button to show the player it was the right answer
+            clicked.setBackgroundResource(R.color.rightAnswer);
+
             long nextQuestionId = this.regularQuestion.getNextQuestion();
             currentPlayer.setReachedQuestionId(nextQuestionId);
+
             if(nextQuestionId == 1){
                 //TODO Activity for winning the whole game
             } else {
                 long reachedQuestionLevel = this.regularQuestion.getLevelId();
-
                 if (currentPlayer.goToNextLevel(reachedQuestionLevel)) {
                     currentPlayer.setIdOfLevel(reachedQuestionLevel);
                     //TODO show player that he goes a level up
                     Intent nextActivity = new Intent(this, MapActivity.class);
                     startActivity(nextActivity);
+                } else {
+                    Intent nextQuestion = new Intent(this, RegularQuestionActivity.class);
+                    startActivity(nextQuestion);
                 }
             }
 
         } else {
+            //red color for wrong answer
+            clicked.setBackgroundResource(R.color.wrongAnswer);
+
             boolean goToLogicalQuestion = currentPlayer.loseLifeAndGoToLogicQuestion();
             if(goToLogicalQuestion){
                 Intent nextActivity = new Intent(this, SaveLifeActivity.class);

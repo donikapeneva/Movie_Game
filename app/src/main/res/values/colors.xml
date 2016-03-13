@@ -5,5 +5,6 @@
     <color name="colorAccent">#FFA026</color>
     <color name="colorQuestion">#b7b6b6</color>
     <color name="letterText">#261701</color>
-
+    <color name="rightAnswer">#ee50c13a</color>
+    <color name="wrongAnswer">#eef72f32</color>
 </resources>
