@@ -24,7 +24,8 @@
         <activity android:name=".RegularQuestionActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SaveLifeActivity" />
-        <activity android:name=".RebornActivity"></activity>
+        <activity android:name=".RebornActivity" />
+        <activity android:name=".WinningActivity"></activity>
     </application>
 
 </manifest>

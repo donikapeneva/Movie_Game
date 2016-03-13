@@ -78,7 +78,8 @@ public class RegularQuestionActivity extends AppCompatActivity {
             playerManager.setReachedQuestionId(nextQuestionId);
 
             if(nextQuestionId == 1){
-                //TODO Activity for winning the whole game
+                Intent winning = new Intent(this, WinningActivity.class);
+                startActivity(winning);
             } else {
                 long reachedQuestionLevel = this.regularQuestion.getLevelId();
                 if (playerManager.goToNextLevel(reachedQuestionLevel)) {
