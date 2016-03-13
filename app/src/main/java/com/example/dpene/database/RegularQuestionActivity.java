@@ -44,8 +44,8 @@ public class RegularQuestionActivity extends AppCompatActivity {
         ArrayList<String> answers = new ArrayList<String>();
         answers.add(regularQuestion.getRightAnswer());
         String[] wrongAnswers = regularQuestion.getWrongAnswers();
-        for(int i = 0; i < wrongAnswers.length; i++){
-            answers.add(wrongAnswers[i]);
+        for(String ans : wrongAnswers){
+            answers.add(ans);
         }
 
         Collections.shuffle(answers);
