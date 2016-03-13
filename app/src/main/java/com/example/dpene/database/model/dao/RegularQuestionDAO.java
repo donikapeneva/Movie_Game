@@ -52,7 +52,7 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
 
         //because the player keeps the id of the reached question
         String selectQuery = "SELECT * FROM " + dh.TABLE_QUESTION
-                + " WHERE " + dh.UID_QUESTION + " = \"" + regQuestionId + "\"";
+                + "WHERE " + dh.UID_QUESTION + " = \"" + regQuestionId + "\"";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
