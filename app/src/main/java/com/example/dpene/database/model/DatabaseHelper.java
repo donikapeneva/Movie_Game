@@ -90,15 +90,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String INSERT_INTO_QUESTION = "INSERT INTO " + TABLE_QUESTION
             + " (" + NEXT_QUESTION + ", " + LEVEL_ID + ", " + QUESTION_TEXT + ", " + RIGHT_ANS + ", "
             + WRONG_ANS_1 + ", " + WRONG_ANS_2 + ", " + WRONG_ANS_3 + ") VALUES" +
-            "  (2, 1, Are you stupid?, yes, no, i don't know, this is stupid)," +
-            "  (3, 1, Are you stupid_2?, yes_2, no_2, i don't know 2, this is stupid 2)," +
-            "  (4, 1, Are you stupid_3?, yes_3, no_3, i don't know 3, this is stupid 3)," +
-            "  (5, 2, WTF?, wtf_1, no_wtf_1, i don't know wtf_1, this is stupid wtf_1)," +
-            "  (6, 2, WTF?, wtf_2, no_wtf_2, i don't know_wtf_2, this is stupid wtf_2)," +
-            "  (7, 2, WTF?, wtf_3, no wtf_3, i don't know wtf_3, this is stupid wtf_3)," +
-            "  (8, 3, M?, m_1, no m_1, i don't know m_1, this is stupid m_1)," +
-            "  (9, 3, M?, m_2, no m_2, i don't know m_2, this is stupid m_2)," +
-            "  (10, 3, M?, m_3, no m_3, i don't know m_3, this is stupid m_3);";
+            "  (2, 1, What are Harry's friend's names?, Ron & Hermonie, Jack & Kate, Crab & Goil, Ross & Rachel)," +
+            "  (3, 1, Who gave Harry his scar?, Voldemort, Malfoy, Dudley, The Whomping Willow)," +
+            "  (4, 1, What house is Harry in?, Gryffindor, Slytherin, Ravenclaw, Hufflepuff)," +
+            "  (5, 1, Where do wizards buy their things?, Diagon Ally, Wizarding Lane, Magic Street, Mystic Road)," +
+            "  (6, 1, Who bought Hedwig for Harry?, Rubeus Hagrid, Professor McGonagall, Vernon Dursley, Professor Dubledore)," +
+            "  (7, 1, How many ae the Harry Potter movies?, 8, 7, 5, 6)," +
+            "  (8, 1, What is Voldemort's real name?, Tom Riddle, Albus Dumbledore, Lucius Malfoy, Peter Parker)," +
+            "  (9, 1, How many horcruxes has Voldemort created?, 7, 3, 6, 5)," +
+            "  (10, 1, What is the naame of Harry's uncle?, Sirius Black, Dudley Dursley, James Potter, Uncle Ben)," +
+            "  (11, 1, What is Azkaban?, Prison, Shop, One of Hagrid'weird creatures, Wizarding School)," +
+            "  (12, 2, What is the name of the main character in Prison Break?, Michael Scofield, Brad Bellick, Veronica Donavan, John Smith)," +
+            "  (13, 2, For what reason did Michael go to prison?, To free his brother, He killed two people, He was wrongly accused of murder, He wworked there)," +
+            "  (14, 2, What is the naame of Michael's brother?, Lincoln, Jaes, Robert, Brad)," +
+            "  (null, 2, How many seasons has Prison Break?, 4, 6, 5, 3);";
 
     private static final String INSERT_INTO_LOGIC_QUESTION = "INSERT INTO " + TABLE_LOGIC_QUESTION
             + " (" + LOGIC_QUESTION + ", " + LOGIC_ANSWER  + ") VALUES" +

@@ -34,7 +34,7 @@ public class RegularQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regular_question);
-        
+
 
         regQuestionTextView = (TextView) findViewById(R.id.regular_question_text);
         answer1_button = (Button) findViewById(R.id.answer1_button);
@@ -42,8 +42,8 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer3_button = (Button) findViewById(R.id.answer3_button);
         answer4_button = (Button) findViewById(R.id.answer4_button);
 
-        playerDAO =  new PlayerDAO(this);
-        this.currentPlayer = playerDAO.getPlayer(playerUsername);
+       // playerDAO =  new PlayerDAO(this);
+       // this.currentPlayer = playerDAO.getPlayer(playerUsername);
 
         regularQuestionDAO = new RegularQuestionDAO(this);
         this.regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
