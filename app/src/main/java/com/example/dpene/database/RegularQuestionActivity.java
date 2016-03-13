@@ -34,10 +34,7 @@ public class RegularQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regular_question);
-
-
-        Bundle data = getIntent().getExtras();
-        String playerUsername = data.getString(LoginActivity.PLAYER_USERNAME);
+        
 
         regQuestionTextView = (TextView) findViewById(R.id.regular_question_text);
         answer1_button = (Button) findViewById(R.id.answer1_button);

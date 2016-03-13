@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_button:
                 if (manager.login(this.username.getText().toString(), this.password.getText().toString())) {
                     Intent nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
-                    nextActivity.putExtra(PLAYER_USERNAME, this.username.getText().toString());
                     startActivity(nextActivity);
                 } else {
                     Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_LONG).show();

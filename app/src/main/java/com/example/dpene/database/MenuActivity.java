@@ -34,8 +34,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             default:
             case R.id.map_button:
                 nextActivity = new Intent(this, MapActivity.class);
-                Bundle data = getIntent().getExtras();
-                nextActivity.putExtra(LoginActivity.PLAYER_USERNAME, data.getString("playerUsername"));
                 break;
             case R.id.exit_button:
                 //tuk ne trqbva li da mu zadadem da izlzia ot cqloto prilojenie, a ne da se vrushta kum logIn
