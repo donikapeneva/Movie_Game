@@ -36,7 +36,7 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer4_button = (Button) findViewById(R.id.answer4_button);
 
         //TODO initialize currentPlayer
-       /* regularQuestionDAO = new RegularQuestionDAO(this);
+        regularQuestionDAO = new RegularQuestionDAO(this);
         RegularQuestion regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
@@ -46,16 +46,20 @@ public class RegularQuestionActivity extends AppCompatActivity {
         String[] wrongAnswers = regularQuestion.getWrongAnswers();
         for(int i = 0; i < wrongAnswers.length; i++){
             answers.add(wrongAnswers[i]);
-        }*/
-        
-        String[] wrongAnswers = {"1", "2", "3", "4"};
-        ArrayList<String> answers = new ArrayList<String>();
-        for(int i = 0; i < wrongAnswers.length; i++){
-            answers.add(wrongAnswers[i]);
         }
-        Integer[] cases = {1,2,3,4};
+
+        Collections.shuffle(answers);
+        int firstAns = 0;
+        answer1_button.setText(answers.get(firstAns++));
+        answer1_button.setText(answers.get(firstAns++));
+        answer1_button.setText(answers.get(firstAns++));
+        answer1_button.setText(answers.get(firstAns));
+
+        /*
+        int[] cases = {1,2,3,4};
         Collections.shuffle(Arrays.asList(cases));
-        for(int i = 0; i <= answers.size(); i++){
+        int i = 0;
+        while (i <= 3){
             int r = cases[i];
             switch(r){
                 case 1: answer1_button.setText(answers.get(i));
@@ -67,7 +71,8 @@ public class RegularQuestionActivity extends AppCompatActivity {
                 case 4: answer4_button.setText(answers.get(i));
                     break;
             }
-        }
+            i++;
+        } */
 
 
     }
