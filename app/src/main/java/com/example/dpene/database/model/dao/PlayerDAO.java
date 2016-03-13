@@ -32,9 +32,6 @@ public class PlayerDAO implements IPlayerDAO {
         values.put(dh.NAME, player.getName());
         values.put(dh.PASSWORD, player.getEmail());
         values.put(dh.EMAIL, player.getPassword());
-        //TODO maybe = 0 ?
-        values.put(dh.PL_LEVEL, player.getReachedLevel());
-        values.put(dh.PL_QUESTION, player.getReachedQuestion());
 
         long userId = db.insert(dh.TABLE_PLAYER, null, values);
         db.close();

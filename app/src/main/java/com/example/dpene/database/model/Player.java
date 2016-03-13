@@ -1,7 +1,6 @@
 package com.example.dpene.database.model;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class Player {
 
@@ -13,21 +12,26 @@ public class Player {
     private String password;
     private String email;
     private Level reachedLevel;
-    private int indexOfReachedLevel; //TODO change it to long idOfReachedLevel
+
+    // reachedQ i reachedL defaultno = 1
+    private long idOfLevel;
     private int reachedQuestion;
     private long reachedQuestionId;
     private List<Level> levels;
     private int lives;
+
 
     //TODO decide on a constructor
     public Player(String email, String username, String password, int reachedLevel, int reachedQuestion) {
         this.email = email;
         this.name = username;
         this.password = password;
-        this.indexOfReachedLevel = reachedLevel;
+        this.idOfLevel = reachedLevel;
         this.reachedQuestion = reachedQuestion;
+        this.lives = MAX_LIVES;
     }
 
+    // TODO nujen li ni e ?
     public Player(List<Level> levels) {
         this.setName(name);
 
@@ -35,8 +39,8 @@ public class Player {
         this.setPassword();
 
         this.levels = levels;
-        this.indexOfReachedLevel = 0;
-        this.reachedLevel = levels.get(indexOfReachedLevel);
+        this.idOfLevel = 0;
+        this.reachedLevel = levels.get((int) idOfLevel);
         this.reachedQuestion = 0;
 
         this.lives = MAX_LIVES;
@@ -55,6 +59,10 @@ public class Player {
             }
             this.setName(name);
         }
+    }
+
+    public long getIdOfLevel() {
+        return idOfLevel;
     }
 
     //TODO do we use this method
@@ -119,16 +127,16 @@ public class Player {
     }
 
     private void levelUp() {
-        if (this.indexOfReachedLevel == this.levels.size() - 1) {
+        if (this.idOfLevel == this.levels.size() - 1) {
         } else {
-            this.indexOfReachedLevel++;
-            this.reachedLevel = this.levels.get(this.indexOfReachedLevel);
+            this.idOfLevel++;
+            this.reachedLevel = this.levels.get((int) this.idOfLevel);
             this.reachedQuestion = 0;
         }
     }
 
 
     public int getReachedLevel() {
-        return indexOfReachedLevel;
+        return (int) idOfLevel;
     }
 }

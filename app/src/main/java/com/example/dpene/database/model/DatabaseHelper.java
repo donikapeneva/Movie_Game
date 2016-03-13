@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "MOVIE_GAME_DATABASE";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     // tables
     public static final String TABLE_PLAYER = "player";
@@ -36,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NAME + " TEXT UNIQUE, "
             + PASSWORD + " TEXT, "
             + EMAIL + " TEXT UNIQUE, "
-            + PL_LEVEL + " INTEGER, "
-            + PL_QUESTION + " INTEGER, "
+            + PL_LEVEL + " INTEGER DEFAULT 1, "
+            + PL_QUESTION + " INTEGER DEFAULT 1, "
             + "FOREIGN KEY(" + PL_LEVEL + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + "), "
             + "FOREIGN KEY(" + PL_QUESTION + ") REFERENCES " + TABLE_QUESTION + "(" + UID_QUESTION + ")"
             + ");";
