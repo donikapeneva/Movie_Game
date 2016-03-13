@@ -22,6 +22,8 @@ public class LetterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent nextActivity = new Intent(LetterActivity.this, MenuActivity.class);
+                Bundle data = getIntent().getExtras();
+                nextActivity.putExtra(LoginActivity.PLAYER_USERNAME, data.getString("playerUsername"));
                 startActivity(nextActivity);
             }
         });

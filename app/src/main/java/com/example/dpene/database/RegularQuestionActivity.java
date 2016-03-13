@@ -2,11 +2,13 @@ package com.example.dpene.database;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.dpene.database.model.Player;
 import com.example.dpene.database.model.RegularQuestion;
+import com.example.dpene.database.model.dao.PlayerDAO;
 import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
 import java.util.ArrayList;
@@ -23,11 +25,17 @@ public class RegularQuestionActivity extends AppCompatActivity {
     private Button answer4_button;
     private Player currentPlayer;
     private RegularQuestionDAO regularQuestionDAO;
+    private String rightAnswer;
+    private PlayerDAO playerDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regular_question);
+
+
+        Bundle data = getIntent().getExtras();
+        String playerUsername = data.getString(LoginActivity.PLAYER_USERNAME);
 
         regQuestionTextView = (TextView) findViewById(R.id.regular_question_text);
         answer1_button = (Button) findViewById(R.id.answer1_button);
@@ -35,14 +43,18 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer3_button = (Button) findViewById(R.id.answer3_button);
         answer4_button = (Button) findViewById(R.id.answer4_button);
 
-        //TODO initialize currentPlayer
+        playerDAO =  new PlayerDAO(this);
+        currentPlayer = playerDAO.getPlayer(playerUsername);
+
         regularQuestionDAO = new RegularQuestionDAO(this);
         RegularQuestion regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
+        this.rightAnswer = regularQuestion.getRightAnswer();
+
         ArrayList<String> answers = new ArrayList<String>();
-        answers.add(regularQuestion.getRightAnswer());
+        answers.add(rightAnswer);
         String[] wrongAnswers = regularQuestion.getWrongAnswers();
         for(String ans : wrongAnswers){
             answers.add(ans);
@@ -55,25 +67,14 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer1_button.setText(answers.get(firstAns++));
         answer1_button.setText(answers.get(firstAns));
 
-        /*
-        int[] cases = {1,2,3,4};
-        Collections.shuffle(Arrays.asList(cases));
-        int i = 0;
-        while (i <= 3){
-            int r = cases[i];
-            switch(r){
-                case 1: answer1_button.setText(answers.get(i));
-                    break;
-                case 2: answer2_button.setText(answers.get(i));
-                    break;
-                case 3: answer3_button.setText(answers.get(i));
-                    break;
-                case 4: answer4_button.setText(answers.get(i));
-                    break;
-            }
-            i++;
-        } */
+    }
 
-
+    public void onClick(View view){
+        Button clicked = (Button) view;
+        if(clicked.getText().equals(rightAnswer)){
+            //go to next question, maybe some dialog fragment
+        } else {
+            //lose life
+        }
     }
 }
