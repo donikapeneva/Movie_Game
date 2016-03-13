@@ -21,17 +21,20 @@ public class Player {
     private int lives;
 
 
-    //TODO decide on a constructor
-    public Player(String email, String username, String password, int reachedLevel, int reachedQuestion) {
+    public Player(String email, String username, String password) {
         this.email = email;
         this.name = username;
         this.password = password;
-        this.idOfLevel = reachedLevel;
-        this.reachedQuestion = reachedQuestion;
         this.lives = MAX_LIVES;
     }
 
-    // TODO nujen li ni e ?
+    public Player(String email, String username, String password, int reachedLevel, int reachedQuestion) {
+        this(email, username, password);
+        this.idOfLevel = reachedLevel;
+        this.reachedQuestion = reachedQuestion;
+    }
+
+    // TODO decide on a constructor
     public Player(List<Level> levels) {
         this.setName(name);
 

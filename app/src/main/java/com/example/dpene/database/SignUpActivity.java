@@ -40,19 +40,37 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 boolean isCorrect = true;
+                String uname = username.getText().toString();
+                String upassword = password.getText().toString();
+                String uemail = email.getText().toString();
 
-                if (manager.checkEmail(email.getText().toString())) {
-                    email.setError("This email is already used");
+                if(manager.validateEmail(uemail)) {
+                    if (manager.checkEmail(uemail)) {
+                        email.setError("This email is already used");
+                        isCorrect = false;
+                    }
+                } else {
+                    email.setError("Invalid email");
                     isCorrect = false;
                 }
 
-                if (manager.checkUsername(username.getText().toString())) {
-                    username.setError("This username is already taken");
+                if (manager.validateUsername(uname)) {
+                    if (manager.checkUsername(uname)) {
+                        username.setError("This username is already taken");
+                        isCorrect = false;
+                    }
+                } else {
+                    username.setError("Name's length must be bigger than 3");
                     isCorrect = false;
                 }
 
-                if (!password.getText().toString().equals(repeatedPassword.getText().toString())) {
-                    repeatedPassword.setError("The passwords don't match");
+                if (manager.strongPasword(upassword)) {
+                    if (!upassword.equals(repeatedPassword.getText().toString())) {
+                        repeatedPassword.setError("The passwords don't match");
+                        isCorrect = false;
+                    }
+                } else {
+                    password.setError("Please, insert strong password between 5 - 10 symbols");
                     isCorrect = false;
                 }
 
@@ -66,8 +84,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                     Toast.makeText(SignUpActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                     finish();
-//                    Intent nextActivity = new Intent(SignUpActivity.this, LoadingActivity.class);
-//                    startActivity(nextActivity);
                 }
             }
 

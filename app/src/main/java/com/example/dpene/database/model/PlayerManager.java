@@ -9,8 +9,6 @@ public class PlayerManager {
     private static Player player;
     private static PlayerManager instance = null;
     private PlayerDAO playerDAO;
-    private static final int STARTING_LEVEL = 0;
-    private static final int STARTING_QUESTION = 0;
 
     private PlayerManager(Context context) {
         this.playerDAO = new PlayerDAO(context);
@@ -22,10 +20,14 @@ public class PlayerManager {
         return instance;
     }
 
+    // kogato se izvika metoda se inicializira i player-a, login vinagi minava prez metoda
     public boolean login(String username, String password){
-        // inicializirame player-a
         this.player = playerDAO.checkLogin(username, password);
         return playerDAO.checkLogin(username, password) != null;
+    }
+
+    public boolean validateUsername(String username){
+       return username != null && username.length() >= 3 || username != "";
     }
 
     public boolean checkUsername(String username) {
@@ -36,12 +38,19 @@ public class PlayerManager {
         return this.playerDAO.checkUserEmail(email);
     }
 
-    public boolean rightPassword(String username, String password) {
-        return this.playerDAO.getPlayer(username).getPassword().equals(password);
+    public boolean validateEmail(String email){
+        String pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        return email != null && email.matches(pattern);
+    }
+
+    public boolean strongPasword(String password){
+        String pattern = "(?=.*[0-9])(?=.*[a-z]).{5,10}";
+        return (password != null && password.matches(pattern));
     }
 
     public long registerPlayer(String email, String username, String password) {
-        return this.playerDAO.addPlayer(new Player(email, username, password, STARTING_LEVEL, STARTING_QUESTION));
+        return this.playerDAO.addPlayer(new Player(email, username, password));
     }
 
     public Player getPlayer(){
