@@ -38,7 +38,6 @@ public class MapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent nextActivity = new Intent(MapActivity.this, RegularQuestionActivity.class);
                 startActivity(nextActivity);
-
             }
         });
 
