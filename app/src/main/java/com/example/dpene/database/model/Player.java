@@ -14,7 +14,8 @@ public class Player {
     private String email;
     private Level reachedLevel;
     private int indexOfReachedLevel; //TODO change it to long idOfReachedLevel
-    private int reachedQuestion; // TODO change it to long idOfReachedQuestion
+    private int reachedQuestion;
+    private long reachedQuestionId;
     private List<Level> levels;
     private int lives;
 
@@ -92,6 +93,10 @@ public class Player {
         return this.reachedQuestion;
     }
 
+    public long getReachedQuestionId(){
+        return this.reachedQuestionId;
+    }
+
     //TODO where do we use it and change implementation
     private void loseLife() {
         if (this.lives == 0) {
@@ -101,7 +106,6 @@ public class Player {
         }
     }
 
-    //TODO do we use that?
     private void goAhead() {
         if (this.reachedQuestion == this.reachedLevel.getQuestionSize() - 1) {
             this.levelUp();
@@ -110,7 +114,6 @@ public class Player {
         }
     }
 
-    //TODO how and where do we use that
     private void levelUp() {
         if (this.indexOfReachedLevel == this.levels.size() - 1) {
         } else {

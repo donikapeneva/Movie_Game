@@ -60,7 +60,6 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
             cursor.moveToFirst();
         }
 
-        //String question, String rightAnswer, String wrong1, String wrong2, String wrong3, long levelId, long nextQ
         String question = cursor.getString(cursor.getColumnIndex(dh.QUESTION_TEXT));
         String rightAnser = cursor.getString(cursor.getColumnIndex(dh.RIGHT_ANS));
         String wrong1 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_1));

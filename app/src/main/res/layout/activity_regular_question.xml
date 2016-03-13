@@ -11,7 +11,7 @@
     tools:context=".RegularQuestionActivity">
 
     <TextView
-        android:id="@+id/regular_question"
+        android:id="@+id/regular_question_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
