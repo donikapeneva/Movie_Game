@@ -4,7 +4,7 @@ import com.example.dpene.database.model.Player;
 
 import java.util.List;
 
-public interface IUserDAO {
+public interface IPlayerDAO {
 
     long addPlayer(Player player);
     Player getPlayer(String username);

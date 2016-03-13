@@ -2,18 +2,18 @@ package com.example.dpene.database.model;
 
 import java.util.TreeMap;
 
-public class UserManager {
+public class PlayerManager {
 
-    private static UserManager instance = null;
+    private static PlayerManager instance = null;
     private TreeMap<String, Player> users;
 
-    private UserManager() {
+    private PlayerManager() {
         this.users = new TreeMap<String, Player>();
     }
 
-    public static UserManager getInstance() {
+    public static PlayerManager getInstance() {
         if (instance == null)
-            instance = new UserManager();
+            instance = new PlayerManager();
         return instance;
     }
 

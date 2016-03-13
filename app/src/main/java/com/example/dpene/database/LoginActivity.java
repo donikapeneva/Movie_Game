@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dpene.database.model.UserManager;
+import com.example.dpene.database.model.PlayerManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText password;
     private Button logIn;
     private Button signUp;
-    private UserManager manager;
+    private PlayerManager manager;
     private static final int REQUEST_CODE_FOR_SIGN_UP = 1;
     private static final int REQUEST_CODE_FOR_LOADING = 2;
 
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.manager = UserManager.getInstance();
+        this.manager = PlayerManager.getInstance();
 
         this.username = (EditText) findViewById(R.id.username);
         this.password = (EditText) findViewById(R.id.password);

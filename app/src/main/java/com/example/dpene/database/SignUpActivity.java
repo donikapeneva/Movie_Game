@@ -8,11 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dpene.database.model.UserManager;
+import com.example.dpene.database.model.PlayerManager;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private UserManager manager;
+    private PlayerManager manager;
     private EditText email;
     private EditText username;
     private EditText password;
@@ -25,7 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        manager = UserManager.getInstance();
+        manager = PlayerManager.getInstance();
 
         Bundle data = getIntent().getExtras();
 

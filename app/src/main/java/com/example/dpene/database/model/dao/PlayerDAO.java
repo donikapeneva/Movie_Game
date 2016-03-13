@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class UserDAO implements IUserDAO {
+public class PlayerDAO implements IPlayerDAO {
 
     private DatabaseHelper dh;
     private Context context;
 
-    public UserDAO(Context context){
+    public PlayerDAO(Context context){
         this.context = context;
         this.dh = DatabaseHelper.getInstance(context);
     }
