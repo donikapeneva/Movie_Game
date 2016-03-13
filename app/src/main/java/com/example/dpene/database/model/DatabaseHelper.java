@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "MOVIE_GAME_DATABASE";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     // tables
     public static final String TABLE_PLAYER = "player";
@@ -100,6 +100,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  (8, 2, M?, m_2, no m_2, i don't know m_2, this is stupid m_2)," +
             "  (9, 2, M?, m_3, no m_3, i don't know m_3, this is stupid m_3);";
 
+    private static final String INSERT_INTO_LOGIC_QUESTION = "INSERT INTO " + TABLE_LOGIC_QUESTION
+            + " (" + LOGIC_QUESTION + ", " + LOGIC_ANSWER  + ") VALUES" +
+            "  (Are you stupid?, yes," +
+            "  (Are you stupid_2?, yes_2," +
+            "  (Are you stupid_3?, yes_3," +
+            "  (WTF?, wtf_1," +
+            "  (WTF?, wtf_2," +
+            "  (WTF?, wtf_3," +
+            "  (M?, m_1," +
+            "  (M?, m_2," +
+            "  (M?, m_3,";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -121,6 +133,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_QUESTION);
             db.execSQL(CREATE_TABLE_LOGIC_QUESTION);
             db.execSQL(INSERT_INTO_QUESTION);
+            db.execSQL(INSERT_INTO_LOGIC_QUESTION);
         } catch (SQLException e) {
         }
     }
