@@ -37,21 +37,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Intent nextActivity;
         switch (v.getId()) {
             default:
             case R.id.login_button:
-                // check if user exist, valid password
-                if (manager.checkUsername(username.getText().toString()) && manager.rightPassword(username.getText().toString(), password.getText().toString())) {
-                    nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
-                    startActivity(nextActivity);
+                if (manager.login(this.username.getText().toString(), this.password.getText().toString())) {
+                    startActivity( new Intent(LoginActivity.this, LoadingActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_LONG).show();
                 }
                 break;
 
             case R.id.sign_in_reference_button:
-                nextActivity = new Intent(LoginActivity.this, SignUpActivity.class);
+                Intent nextActivity = new Intent(LoginActivity.this, SignUpActivity.class);
                 nextActivity.putExtra("username", this.username.getText().toString());
                 startActivity(nextActivity);
                 break;

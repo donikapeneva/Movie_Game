@@ -21,6 +21,10 @@ public class PlayerManager {
         return instance;
     }
 
+    public boolean login(String username, String password){
+        return playerDAO.checkLogin(username, password) != null;
+    }
+
     public boolean checkUsername(String username) {
         return this.playerDAO.checkUsername(username);
     }

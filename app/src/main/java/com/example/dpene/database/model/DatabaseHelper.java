@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "MOVIE_GAME_DATABASE";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     // tables
     public static final String TABLE_PLAYER = "player";
@@ -90,27 +90,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String INSERT_INTO_QUESTION = "INSERT INTO " + TABLE_QUESTION
             + " (" + NEXT_QUESTION + ", " + LEVEL_ID + ", " + QUESTION_TEXT + ", " + RIGHT_ANS + ", "
             + WRONG_ANS_1 + ", " + WRONG_ANS_2 + ", " + WRONG_ANS_3 + ") VALUES" +
-            "  (1, 0, Are you stupid?, yes, no, i don't know, this is stupid)," +
-            "  (2, 0, Are you stupid_2?, yes_2, no_2, i don't know 2, this is stupid 2)," +
-            "  (3, 0, Are you stupid_3?, yes_3, no_3, i don't know 3, this is stupid 3)," +
-            "  (4, 1, WTF?, wtf_1, no_wtf_1, i don't know wtf_1, this is stupid wtf_1)," +
-            "  (5, 1, WTF?, wtf_2, no_wtf_2, i don't know_wtf_2, this is stupid wtf_2)," +
-            "  (6, 1, WTF?, wtf_3, no wtf_3, i don't know wtf_3, this is stupid wtf_3)," +
-            "  (7, 2, M?, m_1, no m_1, i don't know m_1, this is stupid m_1)," +
-            "  (8, 2, M?, m_2, no m_2, i don't know m_2, this is stupid m_2)," +
-            "  (9, 2, M?, m_3, no m_3, i don't know m_3, this is stupid m_3);";
+            "  (2, 1, Are you stupid?, yes, no, i don't know, this is stupid)," +
+            "  (3, 1, Are you stupid_2?, yes_2, no_2, i don't know 2, this is stupid 2)," +
+            "  (4, 1, Are you stupid_3?, yes_3, no_3, i don't know 3, this is stupid 3)," +
+            "  (5, 2, WTF?, wtf_1, no_wtf_1, i don't know wtf_1, this is stupid wtf_1)," +
+            "  (6, 2, WTF?, wtf_2, no_wtf_2, i don't know_wtf_2, this is stupid wtf_2)," +
+            "  (7, 2, WTF?, wtf_3, no wtf_3, i don't know wtf_3, this is stupid wtf_3)," +
+            "  (8, 3, M?, m_1, no m_1, i don't know m_1, this is stupid m_1)," +
+            "  (9, 3, M?, m_2, no m_2, i don't know m_2, this is stupid m_2)," +
+            "  (10, 3, M?, m_3, no m_3, i don't know m_3, this is stupid m_3);";
 
     private static final String INSERT_INTO_LOGIC_QUESTION = "INSERT INTO " + TABLE_LOGIC_QUESTION
             + " (" + LOGIC_QUESTION + ", " + LOGIC_ANSWER  + ") VALUES" +
-            "  (Are you stupid?, yes," +
-            "  (Are you stupid_2?, yes_2," +
-            "  (Are you stupid_3?, yes_3," +
-            "  (WTF?, wtf_1," +
-            "  (WTF?, wtf_2," +
-            "  (WTF?, wtf_3," +
-            "  (M?, m_1," +
-            "  (M?, m_2," +
-            "  (M?, m_3,";
+            "  (Are you stupid?, yes)," +
+            "  (Are you stupid_2?, yes_2)," +
+            "  (Are you stupid_3?, yes_3)," +
+            "  (WTF?, wtf_1)," +
+            "  (WTF?, wtf_2)," +
+            "  (WTF?, wtf_3)," +
+            "  (M?, m_1)," +
+            "  (M?, m_2)," +
+            "  (M?, m_3);";
 
 
     public DatabaseHelper(Context context) {
