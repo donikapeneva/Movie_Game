@@ -1,5 +1,6 @@
 package com.example.dpene.database;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,7 @@ public class RegularQuestionActivity extends AppCompatActivity {
     private Button answer4_button;
     private Player currentPlayer;
     private RegularQuestionDAO regularQuestionDAO;
+    private RegularQuestion regularQuestion;
     private String rightAnswer;
     private PlayerDAO playerDAO;
 
@@ -44,10 +46,10 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer4_button = (Button) findViewById(R.id.answer4_button);
 
         playerDAO =  new PlayerDAO(this);
-        currentPlayer = playerDAO.getPlayer(playerUsername);
+        this.currentPlayer = playerDAO.getPlayer(playerUsername);
 
         regularQuestionDAO = new RegularQuestionDAO(this);
-        RegularQuestion regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
+        this.regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
@@ -72,9 +74,26 @@ public class RegularQuestionActivity extends AppCompatActivity {
     public void onClick(View view){
         Button clicked = (Button) view;
         if(clicked.getText().equals(rightAnswer)){
-            //go to next question, maybe some dialog fragment
+            //TODO dialog fragment to show him it was the right answer
+            long nextQuestionId = this.regularQuestion.getNextQuestion();
+            currentPlayer.setReachedQuestionId(nextQuestionId);
+            long reachedQuestionLevel = this.regularQuestion.getLevelId();
+
+            if(currentPlayer.goToNextLevel(reachedQuestionLevel)){
+                currentPlayer.setIdOfLevel(reachedQuestionLevel);
+                //TODO show player that he goes a level up
+                Intent nextActivity = new Intent(this, MapActivity.class);
+                startActivity(nextActivity);
+            }
+
         } else {
-            //lose life
+            boolean goToLogicalQuestion = currentPlayer.loseLifeAndGoToLogicQuestion();
+            if(goToLogicalQuestion){
+                Intent nextActivity = new Intent(this, SaveLifeActivity.class);
+                startActivity(nextActivity);
+            } else {
+                //TODO show the player that he has lost a life
+            }
         }
     }
 }

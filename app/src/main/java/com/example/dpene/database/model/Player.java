@@ -1,5 +1,7 @@
 package com.example.dpene.database.model;
 
+import com.example.dpene.database.model.dao.RegularQuestionDAO;
+
 import java.util.List;
 
 public class Player {
@@ -108,12 +110,12 @@ public class Player {
         return this.reachedQuestionId;
     }
 
-    //TODO where do we use it and change implementation
-    private void loseLife() {
+    public boolean loseLifeAndGoToLogicQuestion() {
         if (this.lives == 0) {
-            //answer logic question
+            return true;
         } else {
             this.lives--;
+            return false;
         }
     }
 
@@ -121,12 +123,20 @@ public class Player {
         this.lives = WON_LIVES;
     }
 
-    private void goAhead() {
-        if (this.reachedQuestion == this.reachedLevel.getQuestionSize() - 1) {
-            this.levelUp();
+    public boolean goToNextLevel(long levelId) {
+        if(levelId != idOfLevel){
+            return true;
         } else {
-            this.reachedQuestion++;
+            return false;
         }
+    }
+
+    public void setReachedQuestionId(long nextQuestionId){
+        this.reachedQuestionId = nextQuestionId;
+    }
+
+    public void setIdOfLevel(long nextLevelId){
+        this.idOfLevel = nextLevelId;
     }
 
     private void levelUp() {
