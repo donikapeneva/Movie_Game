@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.example.dpene.database.model.dao.LogicQuestionDAO;
 
-import java.util.List;
-
 public class LogicQuestionManager {
 
     private static LogicQuestionManager instance;
@@ -22,8 +20,8 @@ public class LogicQuestionManager {
         return instance;
     }
 
-    public List<LogicQuestion> getLogicQuestions() {
-        return this.logicQuestionDAO.getAllLogicQuestions();
+    public LogicQuestion getLogicQuestion() {
+        return this.logicQuestionDAO.getLogicQuestion();
     }
 
 

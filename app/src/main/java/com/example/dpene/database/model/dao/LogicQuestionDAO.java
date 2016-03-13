@@ -10,12 +10,35 @@ import com.example.dpene.database.model.LogicQuestion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogicQuestionDAO {
+public class LogicQuestionDAO implements ILogicQuestionDAO {
 
     private DatabaseHelper dh;
 
     public LogicQuestionDAO(Context context) {
         this.dh = DatabaseHelper.getInstance(context);
+    }
+
+    public LogicQuestion getLogicQuestion() {
+
+        int min = 1;
+        int max = this.getAllLogicQuestions().size() - 1;
+        int randomQuestion = min + (int) (Math.random() * ((max - min) + min));
+
+        String query = "SELECT * FROM " + dh.TABLE_LOGIC_QUESTION
+                + " WHERE " + dh.UID_LOGIC_QUESTION + " = \"" + randomQuestion + "\"";
+
+        SQLiteDatabase db = dh.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String question = cursor.getString(cursor.getColumnIndex(dh.LOGIC_QUESTION));
+        String answer = cursor.getString(cursor.getColumnIndex(dh.LOGIC_ANSWER));
+
+        LogicQuestion logicQuestion = new LogicQuestion(question, answer);
+        db.close();
+        return logicQuestion;
     }
 
     public List<LogicQuestion> getAllLogicQuestions() {
@@ -37,29 +60,6 @@ public class LogicQuestionDAO {
 
         db.close();
         return listOfQuestions;
-    }
-
-    public LogicQuestion getLogicQuestion(){
-
-        int min = 1;
-        int max = this.getAllLogicQuestions().size() - 1;
-        int randomQuestion = min + (int)(Math.random() * ((max - min) + min));
-
-        String query = "SELECT * FROM " + dh.TABLE_LOGIC_QUESTION
-                + " WHERE " + dh.UID_LOGIC_QUESTION + " = \"" + randomQuestion + "\"";
-
-        SQLiteDatabase db = dh.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        String question = cursor.getString(cursor.getColumnIndex(dh.LOGIC_QUESTION));
-        String answer = cursor.getString(cursor.getColumnIndex(dh.LOGIC_ANSWER));
-
-        LogicQuestion logicQuestion = new LogicQuestion(question, answer);
-        db.close();
-        return logicQuestion;
     }
 
 }
