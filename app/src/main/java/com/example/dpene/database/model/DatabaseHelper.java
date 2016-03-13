@@ -77,8 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ");";
 
     // logic question table
-    private static final String LOGIC_QUESTION = "logic_question";
-    private static final String LOGIC_ANSWER = "logic_answer";
+    public static final String LOGIC_QUESTION = "logic_question";
+    public static final String LOGIC_ANSWER = "logic_answer";
 
     private static final String CREATE_TABLE_LOGIC_QUESTION = "CREATE TABLE " + TABLE_LOGIC_QUESTION + " ("
             + UID_LOGIC_QUESTION + " INTEGER PRIMARY KEY AUTOINCREMENT, "
