@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.dpene.database.model.Player;
+import com.example.dpene.database.model.PlayerManager;
 import com.example.dpene.database.model.RegularQuestion;
 import com.example.dpene.database.model.dao.PlayerDAO;
 import com.example.dpene.database.model.dao.RegularQuestionDAO;
@@ -25,11 +26,10 @@ public class RegularQuestionActivity extends AppCompatActivity {
     private Button answer2_button;
     private Button answer3_button;
     private Button answer4_button;
-    private Player currentPlayer;
     private RegularQuestionDAO regularQuestionDAO;
     private RegularQuestion regularQuestion;
     private String rightAnswer;
-    private PlayerDAO playerDAO;
+    private PlayerManager playerManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,10 @@ public class RegularQuestionActivity extends AppCompatActivity {
         answer3_button = (Button) findViewById(R.id.answer3_button);
         answer4_button = (Button) findViewById(R.id.answer4_button);
 
-        //TODO initialize current player, Player Manager
-        // playerDAO =  new PlayerDAO(this);
-        // this.currentPlayer = playerDAO.getPlayer(playerUsername);
+        this.playerManager = PlayerManager.getInstance(this);
 
         regularQuestionDAO = new RegularQuestionDAO(this);
-        this.regularQuestion = regularQuestionDAO.getRegularQuestion(currentPlayer.getReachedQuestionId());
+        this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
@@ -77,14 +75,14 @@ public class RegularQuestionActivity extends AppCompatActivity {
             clicked.setBackgroundResource(R.color.rightAnswer);
 
             long nextQuestionId = this.regularQuestion.getNextQuestion();
-            currentPlayer.setReachedQuestionId(nextQuestionId);
+            playerManager.setReachedQuestionId(nextQuestionId);
 
             if(nextQuestionId == 1){
                 //TODO Activity for winning the whole game
             } else {
                 long reachedQuestionLevel = this.regularQuestion.getLevelId();
-                if (currentPlayer.goToNextLevel(reachedQuestionLevel)) {
-                    currentPlayer.setIdOfLevel(reachedQuestionLevel);
+                if (playerManager.goToNextLevel(reachedQuestionLevel)) {
+                    playerManager.setIdOfLevel(reachedQuestionLevel);
                     //TODO show player that he goes a level up
                     Intent nextActivity = new Intent(this, MapActivity.class);
                     startActivity(nextActivity);
@@ -98,7 +96,7 @@ public class RegularQuestionActivity extends AppCompatActivity {
             //red color for wrong answer
             clicked.setBackgroundResource(R.color.wrongAnswer);
 
-            boolean goToLogicalQuestion = currentPlayer.loseLifeAndGoToLogicQuestion();
+            boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
             if(goToLogicalQuestion){
                 Intent nextActivity = new Intent(this, SaveLifeActivity.class);
                 startActivity(nextActivity);

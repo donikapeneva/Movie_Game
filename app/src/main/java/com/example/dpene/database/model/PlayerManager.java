@@ -77,8 +77,24 @@ public class PlayerManager {
         player.winLives();
     }
 
-    // TODO
-    public void playerLoseLive() {
-
+    public long getReachedQuestionId(){
+        return this.player.getReachedQuestionId();
     }
+
+    public void setReachedQuestionId(long nextQuestionId){
+        this.player.setReachedQuestionId(nextQuestionId);
+    }
+
+    public boolean goToNextLevel(long idLevel){
+        return this.player.goToNextLevel(idLevel);
+    }
+
+    public void setIdOfLevel(long idLevel){
+        this.player.setIdOfLevel(idLevel);
+    }
+
+    public boolean loseLifeAndGoToLogicQuestion(){
+        return this.player.loseLifeAndGoToLogicQuestion();
+    }
+
 }
