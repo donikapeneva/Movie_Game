@@ -1,6 +1,5 @@
 package com.example.dpene.database;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        manager = PlayerManager.getInstance();
+        manager = PlayerManager.getInstance(this);
 
         Bundle data = getIntent().getExtras();
 
@@ -42,12 +41,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                 boolean isCorrect = true;
 
-                if (manager.existsEmail(email.getText().toString())) {
+                if (manager.checkEmail(email.getText().toString())) {
                     email.setError("This email is already used");
                     isCorrect = false;
                 }
 
-                if (manager.existsUser(username.getText().toString())) {
+                if (manager.checkUsername(username.getText().toString())) {
                     username.setError("This username is already taken");
                     isCorrect = false;
                 }
@@ -57,12 +56,18 @@ public class SignUpActivity extends AppCompatActivity {
                     isCorrect = false;
                 }
 
+                //TODO
                 if (isCorrect) {
-                    manager.registerUser(email.getText().toString(), username.getText().toString(),
-                            password.getText().toString());
+                    if (manager.registerPlayer(email.getText().toString(), username.getText().toString(),
+                            password.getText().toString()) < 0) {
+                        Toast.makeText(SignUpActivity.this, "-1", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     Toast.makeText(SignUpActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
-                    Intent nextActivity = new Intent(SignUpActivity.this, LoadingActivity.class);
-                    startActivity(nextActivity);
+                    finish();
+//                    Intent nextActivity = new Intent(SignUpActivity.this, LoadingActivity.class);
+//                    startActivity(nextActivity);
                 }
             }
 

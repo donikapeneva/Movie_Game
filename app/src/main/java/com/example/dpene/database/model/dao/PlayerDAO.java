@@ -22,7 +22,6 @@ public class PlayerDAO implements IPlayerDAO {
         this.dh = DatabaseHelper.getInstance(context);
     }
 
-
     @Override
     public long addPlayer(Player player) {
 
@@ -34,7 +33,7 @@ public class PlayerDAO implements IPlayerDAO {
         values.put(dh.PASSWORD, player.getEmail());
         values.put(dh.EMAIL, player.getPassword());
         //TODO maybe = 0 ?
-        values.put(dh.PL_LEVEL, player.getLevel().getNumberOfLevel());
+        values.put(dh.PL_LEVEL, player.getReachedLevel());
         values.put(dh.PL_QUESTION, player.getReachedQuestion());
 
         long userId = db.insert(dh.TABLE_PLAYER, null, values);
@@ -48,7 +47,7 @@ public class PlayerDAO implements IPlayerDAO {
     public Player getPlayer(String username) {
         SQLiteDatabase db = dh.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + dh.TABLE_PLAYER
-                + "WHERE " + dh.NAME + " = \"" + username + "\"";
+                + " WHERE " + dh.NAME + " = \"" + username + "\"";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -148,7 +147,6 @@ public class PlayerDAO implements IPlayerDAO {
             int question = c.getInt(c.getColumnIndex(dh.PL_QUESTION));
 
             player = new Player(email, upassword, uname, level, question);
-            player.setUserId(id);
         }
 
         db.close();

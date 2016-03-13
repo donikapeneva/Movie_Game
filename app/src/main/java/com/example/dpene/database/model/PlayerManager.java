@@ -1,47 +1,39 @@
 package com.example.dpene.database.model;
 
-import java.util.TreeMap;
+import android.content.Context;
+
+import com.example.dpene.database.model.dao.PlayerDAO;
 
 public class PlayerManager {
 
     private static PlayerManager instance = null;
-    private TreeMap<String, Player> users;
+    private PlayerDAO playerDAO;
+    private static final int STARTING_LEVEL = 0;
+    private static final int STARTING_QUESTION = 0;
 
-    private PlayerManager() {
-        this.users = new TreeMap<String, Player>();
+    private PlayerManager(Context context) {
+        this.playerDAO = new PlayerDAO(context);
     }
 
-    public static PlayerManager getInstance() {
+    public static PlayerManager getInstance(Context context) {
         if (instance == null)
-            instance = new PlayerManager();
+            instance = new PlayerManager(context);
         return instance;
     }
 
-    public boolean existsUser(String username) {
-        //String username = text ot poleto username
-        return this.users.containsKey(username);
+    public boolean checkUsername(String username) {
+        return this.playerDAO.checkUsername(username);
     }
 
-    public boolean existsEmail(String email) {
-        //String email = text ot poleto email
-        for (Player user : this.users.values()) {
-            if (user.getEmail().equals(email)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean checkEmail(String email) {
+        return this.playerDAO.checkUserEmail(email);
     }
 
     public boolean rightPassword(String username, String password) {
-        if (!existsUser(username)) {
-            return false;
-        } else {
-            //map<String, User>, zatova imame getPassword
-            return this.users.get(username).getPassword().equals(password);
-        }
+        return this.playerDAO.getPlayer(username).getPassword().equals(password);
     }
 
-    public void registerUser(String email, String username, String password) {
-        this.users.put(username, new Player(email, username, password));
+    public long registerPlayer(String email, String username, String password) {
+        return this.playerDAO.addPlayer(new Player(email, username, password, STARTING_LEVEL, STARTING_QUESTION));
     }
 }

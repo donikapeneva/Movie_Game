@@ -9,7 +9,6 @@ public class Player {
     private static final int WON_LIVES = 2;
     private static final int MAX_LIVES = 2;
 
-    private long userId;
     private String name;
     private String password;
     private String email;
@@ -19,13 +18,13 @@ public class Player {
     private List<Level> levels;
     private int lives;
 
-    public Player(String email, String username, String password){
+    public Player(String email, String username, String password) {
         this.email = email;
         this.name = username;
         this.password = password;
     }
 
-    public Player(String email, String username, String password, int reachedLevel, int reachedQuestion){
+    public Player(String email, String username, String password, int reachedLevel, int reachedQuestion) {
         this.email = email;
         this.name = username;
         this.password = password;
@@ -68,18 +67,20 @@ public class Player {
         }
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public String getEmail() { return  this.email; }
+    public String getEmail() {
+        return this.email;
+    }
 
     private void setPassword() {
         this.createPassword();
         this.repeatPassword();
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return this.password;
     }
 
@@ -191,8 +192,7 @@ public class Player {
 
     }
 
-
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public int getReachedLevel() {
+        return indexOfReachedLevel;
     }
 }
