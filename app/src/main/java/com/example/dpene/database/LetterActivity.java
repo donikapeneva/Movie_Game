@@ -17,7 +17,7 @@ public class LetterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letter_2);
 
-        this.tapToContinue = (Button) findViewById(R.id.tapToContinue);
+        this.tapToContinue = (Button) findViewById(R.id.letter_tap_to_continue_button);
         this.tapToContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
