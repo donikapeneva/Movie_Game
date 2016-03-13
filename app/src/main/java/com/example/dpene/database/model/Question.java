@@ -9,8 +9,7 @@ public class Question {
         this.rightAnswer = rightAnswer;
     }
 
-    @Override
-    public String toString() {
+    public String getQuestion() {
         return this.question;
     }
 

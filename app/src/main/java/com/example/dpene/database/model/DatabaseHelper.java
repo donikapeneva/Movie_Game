@@ -55,13 +55,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ");";
 
     // question table
-    private static final String NEXT_QUESTION = "next_question";
-    private static final String LEVEL_ID = "level_id";
-    private static final String QUESTION_TEXT = "question_text";
-    private static final String RIGHT_ANS = "right_answer";
-    private static final String WRONG_ANS_1 = "wrong_answer_1";
-    private static final String WRONG_ANS_2 = "wrong_answer_2";
-    private static final String WRONG_ANS_3 = "wrong_answer_3";
+    public static final String NEXT_QUESTION = "next_question";
+    public static final String LEVEL_ID = "level_id";
+    public static final String QUESTION_TEXT = "question_text";
+    public static final String RIGHT_ANS = "right_answer";
+    public static final String WRONG_ANS_1 = "wrong_answer_1";
+    public static final String WRONG_ANS_2 = "wrong_answer_2";
+    public static final String WRONG_ANS_3 = "wrong_answer_3";
 
     private static final String CREATE_TABLE_QUESTION = "CREATE TABLE " + TABLE_QUESTION + " ("
             + UID_QUESTION + " INTEGER PRIMARY KEY AUTOINCREMENT, "

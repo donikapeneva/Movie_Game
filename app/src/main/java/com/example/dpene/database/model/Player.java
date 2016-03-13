@@ -13,8 +13,8 @@ public class Player {
     private String password;
     private String email;
     private Level reachedLevel;
-    private int indexOfReachedLevel;
-    private int reachedQuestion;
+    private int indexOfReachedLevel; //TODO change it to long idOfReachedLevel
+    private int reachedQuestion; // TODO change it to long idOfReachedQuestion
     private List<Level> levels;
     private int lives;
 
