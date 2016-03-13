@@ -21,13 +21,13 @@ public class PlayerManager {
     }
 
     // kogato se izvika metoda se inicializira i player-a, login vinagi minava prez metoda
-    public boolean login(String username, String password){
+    public boolean login(String username, String password) {
         this.player = playerDAO.checkLogin(username, password);
         return playerDAO.checkLogin(username, password) != null;
     }
 
-    public boolean validateUsername(String username){
-       return username != null && username.length() >= 3 || username != "";
+    public boolean validateUsername(String username) {
+        return username != null && username.length() >= 3 || username != "";
     }
 
     public boolean checkUsername(String username) {
@@ -38,13 +38,13 @@ public class PlayerManager {
         return this.playerDAO.checkUserEmail(email);
     }
 
-    public boolean validateEmail(String email){
+    public boolean validateEmail(String email) {
         String pattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return email != null && email.matches(pattern);
     }
 
-    public boolean strongPasword(String password){
+    public boolean strongPasword(String password) {
         String pattern = "(?=.*[0-9])(?=.*[a-z]).{5,10}";
         return (password != null && password.matches(pattern));
     }
@@ -53,8 +53,32 @@ public class PlayerManager {
         return this.playerDAO.addPlayer(new Player(email, username, password));
     }
 
-    public Player getPlayer(){
-        return this.player;
+    public String getUsername() {
+        return player.getName();
     }
 
+    public String getPassword() {
+        return player.getPassword();
+    }
+
+    public String getEmail() {
+        return player.getEmail();
+    }
+
+    public int getLevel() {
+        return player.getReachedLevel();
+    }
+
+    public int getQuestion() {
+        return player.getReachedQuestion();
+    }
+
+    public void playerWinLives() {
+        player.winLives();
+    }
+
+    // TODO
+    public void playerLoseLive() {
+
+    }
 }

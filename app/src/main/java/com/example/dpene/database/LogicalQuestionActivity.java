@@ -29,15 +29,15 @@ public class LogicalQuestionActivity extends AppCompatActivity {
         this.playerManager = PlayerManager.getInstance(this);
 
         this.question = (TextView) findViewById(R.id.logical_question_text);
-        this.question.setText(this.questionManager.getLogicQuestion().getQuestion());
+        this.question.setText(this.questionManager.getQuestion());
 
         this.answer = (EditText) findViewById(R.id.logical_answer);
         this.answerButton = (Button) findViewById(R.id.logical_answer_button);
         this.answerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (answer.getText().toString().trim().equals(questionManager.getLogicQuestion().getRightAnswer())) {
-                    playerManager.getPlayer().winLives();
+                if (answer.getText().toString().trim().equals(questionManager.getAnswer())) {
+                    playerManager.playerWinLives();
                     startActivity(new Intent(LogicalQuestionActivity.this, RebornActivity.class));
                 } else {
                     startActivity(new Intent(LogicalQuestionActivity.this, GameOverActivity.class));

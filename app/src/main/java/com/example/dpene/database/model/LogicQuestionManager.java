@@ -20,8 +20,12 @@ public class LogicQuestionManager {
         return instance;
     }
 
-    public LogicQuestion getLogicQuestion() {
-        return this.logicQuestionDAO.getLogicQuestion();
+    public String getQuestion(){
+        return this.logicQuestionDAO.getLogicQuestion().getQuestion();
+    }
+
+    public String getAnswer(){
+        return this.logicQuestionDAO.getLogicQuestion().getRightAnswer();
     }
 
 
