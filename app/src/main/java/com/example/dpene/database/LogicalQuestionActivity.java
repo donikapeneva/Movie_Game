@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.dpene.database.model.LogicQuestionManager;
+import com.example.dpene.database.model.PlayerManager;
 
 public class LogicalQuestionActivity extends AppCompatActivity {
 
@@ -17,6 +18,7 @@ public class LogicalQuestionActivity extends AppCompatActivity {
     private EditText answer;
     private Button answerButton;
     private LogicQuestionManager questionManager;
+    private PlayerManager playerManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class LogicalQuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_logical_question);
 
         this.questionManager = LogicQuestionManager.getInstance(this);
+        this.playerManager = PlayerManager.getInstance(this);
 
         this.question = (TextView) findViewById(R.id.logical_question_text);
         this.question.setText(this.questionManager.getLogicQuestion().getQuestion());
@@ -34,8 +37,8 @@ public class LogicalQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (answer.getText().toString().trim().equals(questionManager.getLogicQuestion().getRightAnswer())) {
+                    playerManager.getPlayer().winLifes();
                     startActivity(new Intent(LogicalQuestionActivity.this, RebornActivity.class));
-                    //TODO change lifes
                 } else {
                     startActivity(new Intent(LogicalQuestionActivity.this, GameOverActivity.class));
                 }

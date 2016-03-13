@@ -6,6 +6,7 @@ import com.example.dpene.database.model.dao.PlayerDAO;
 
 public class PlayerManager {
 
+    private static Player player;
     private static PlayerManager instance = null;
     private PlayerDAO playerDAO;
     private static final int STARTING_LEVEL = 0;
@@ -22,6 +23,8 @@ public class PlayerManager {
     }
 
     public boolean login(String username, String password){
+        // inicializirame player-a
+        this.player = playerDAO.checkLogin(username, password);
         return playerDAO.checkLogin(username, password) != null;
     }
 
@@ -39,6 +42,10 @@ public class PlayerManager {
 
     public long registerPlayer(String email, String username, String password) {
         return this.playerDAO.addPlayer(new Player(email, username, password, STARTING_LEVEL, STARTING_QUESTION));
+    }
+
+    public Player getPlayer(){
+        return this.player;
     }
 
 }
