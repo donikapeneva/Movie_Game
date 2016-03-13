@@ -74,13 +74,17 @@ public class RegularQuestionActivity extends AppCompatActivity {
             //TODO dialog fragment to show him it was the right answer
             long nextQuestionId = this.regularQuestion.getNextQuestion();
             currentPlayer.setReachedQuestionId(nextQuestionId);
-            long reachedQuestionLevel = this.regularQuestion.getLevelId();
+            if(nextQuestionId == 1){
+                //TODO Activity for winning the whole game
+            } else {
+                long reachedQuestionLevel = this.regularQuestion.getLevelId();
 
-            if(currentPlayer.goToNextLevel(reachedQuestionLevel)){
-                currentPlayer.setIdOfLevel(reachedQuestionLevel);
-                //TODO show player that he goes a level up
-                Intent nextActivity = new Intent(this, MapActivity.class);
-                startActivity(nextActivity);
+                if (currentPlayer.goToNextLevel(reachedQuestionLevel)) {
+                    currentPlayer.setIdOfLevel(reachedQuestionLevel);
+                    //TODO show player that he goes a level up
+                    Intent nextActivity = new Intent(this, MapActivity.class);
+                    startActivity(nextActivity);
+                }
             }
 
         } else {

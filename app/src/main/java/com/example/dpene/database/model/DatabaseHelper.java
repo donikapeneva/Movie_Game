@@ -103,7 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  (12, 2, What is the name of the main character in Prison Break?, Michael Scofield, Brad Bellick, Veronica Donavan, John Smith)," +
             "  (13, 2, For what reason did Michael go to prison?, To free his brother, He killed two people, He was wrongly accused of murder, He wworked there)," +
             "  (14, 2, What is the naame of Michael's brother?, Lincoln, Jaes, Robert, Brad)," +
-            "  (null, 2, How many seasons has Prison Break?, 4, 6, 5, 3);";
+            "  (1, 2, How many seasons has Prison Break?, 4, 6, 5, 3);";
+    //long cannot be null, so the last question will point to the first question
 
     private static final String INSERT_INTO_LOGIC_QUESTION = "INSERT INTO " + TABLE_LOGIC_QUESTION
             + " (" + LOGIC_QUESTION + ", " + LOGIC_ANSWER  + ") VALUES" +
