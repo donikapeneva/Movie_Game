@@ -40,4 +40,5 @@ public class PlayerManager {
     public long registerPlayer(String email, String username, String password) {
         return this.playerDAO.addPlayer(new Player(email, username, password, STARTING_LEVEL, STARTING_QUESTION));
     }
+
 }
