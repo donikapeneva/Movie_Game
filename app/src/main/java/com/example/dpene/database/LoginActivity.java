@@ -12,6 +12,7 @@ import com.example.dpene.database.model.PlayerManager;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String PLAYER_USERNAME = "playerUsername";
     private EditText username;
     private EditText password;
     private Button logIn;
@@ -41,7 +42,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             default:
             case R.id.login_button:
                 if (manager.login(this.username.getText().toString(), this.password.getText().toString())) {
-                    startActivity( new Intent(LoginActivity.this, LoadingActivity.class));
+                    Intent nextActivity = new Intent(LoginActivity.this, LoadingActivity.class);
+                    nextActivity.putExtra(PLAYER_USERNAME, this.username.getText().toString());
+                    startActivity(nextActivity);
                 } else {
                     Toast.makeText(LoginActivity.this, "Wrong username or password", Toast.LENGTH_LONG).show();
                 }

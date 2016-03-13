@@ -38,6 +38,8 @@ public class LoadingActivity extends AppCompatActivity {
                 }
 
                 Intent nextActivity = new Intent(LoadingActivity.this, LetterActivity.class);
+                Bundle data = getIntent().getExtras();
+                nextActivity.putExtra(LoginActivity.PLAYER_USERNAME, data.getString("playerUsername"));
                 startActivity(nextActivity);
             }
         }).start();
