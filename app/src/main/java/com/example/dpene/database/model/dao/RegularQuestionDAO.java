@@ -56,10 +56,8 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if(cursor != null){
-            cursor.moveToFirst();
-        }
-
+        cursor.moveToFirst();
+        
         String question = cursor.getString(cursor.getColumnIndex(dh.QUESTION_TEXT));
         String rightAnser = cursor.getString(cursor.getColumnIndex(dh.RIGHT_ANS));
         String wrong1 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_1));
