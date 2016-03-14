@@ -7,4 +7,5 @@
     <color name="letterText">#261701</color>
     <color name="rightAnswer">#ee50c13a</color>
     <color name="wrongAnswer">#eef72f32</color>
+    <color name="logicText">#0D132B</color>
 </resources>

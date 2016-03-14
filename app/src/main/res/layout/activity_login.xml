@@ -48,7 +48,7 @@
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
                         android:hint="@string/username"
-                        android:padding="5dp"
+                        android:padding="@dimen/text_padding"
                         android:inputType="text"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorQuestion" />
@@ -61,7 +61,7 @@
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
                         android:hint="@string/password"
-                        android:padding="5dp"
+                        android:padding="@dimen/text_padding"
                         android:inputType="textPassword"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorQuestion" />
