@@ -49,6 +49,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         answer4_button = (Button) findViewById(R.id.answer4_button);
         answer4_button.setOnClickListener(this);
 
+
+        //TODO remove comments
        // this.playerManager = PlayerManager.getInstance(this);
 
       //  regularQuestionDAO = new RegularQuestionDAO(this);
@@ -83,6 +85,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //change the color of the button to show the player it was the right answer
             clicked.setBackgroundResource(R.color.rightAnswer);
 
+            //TODO remove coment
            /* long nextQuestionId = this.regularQuestion.getNextQuestion();
             playerManager.setReachedQuestionId(nextQuestionId);
 
@@ -107,6 +110,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //red color for wrong answer
             clicked.setBackgroundResource(R.color.wrongAnswer);
 
+            //TODO remove comment
            /* boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
             if(goToLogicalQuestion){
                 Intent nextActivity = new Intent(this, SaveLifeActivity.class);
@@ -117,5 +121,19 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
             } */
         }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    Intent next = new Intent(RegularQuestionActivity.this, MapActivity.class);
+                    startActivity(next);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 }
