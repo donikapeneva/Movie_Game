@@ -2,12 +2,14 @@ package com.example.dpene.database;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.dpene.database.fragments.LoseLifeFragment;
 import com.example.dpene.database.model.Player;
 import com.example.dpene.database.model.PlayerManager;
 import com.example.dpene.database.model.RegularQuestion;
@@ -108,6 +110,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 startActivity(nextActivity);
             } else {
                 //TODO show the player that he has lost a life
+                LoseLifeFragment loseLife = new LoseLifeFragment();
+                loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
             }
         }
     }
