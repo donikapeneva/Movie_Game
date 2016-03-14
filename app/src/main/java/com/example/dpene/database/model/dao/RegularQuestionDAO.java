@@ -54,21 +54,24 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
         String selectQuery = "SELECT * FROM " + dh.TABLE_QUESTION
                 + " WHERE " + dh.UID_QUESTION + " = \"" + regQuestionId + "\"";
 
+        RegularQuestion regularQuestion = null;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        cursor.moveToFirst();
-        
-        String question = cursor.getString(cursor.getColumnIndex(dh.QUESTION_TEXT));
-        String rightAnser = cursor.getString(cursor.getColumnIndex(dh.RIGHT_ANS));
-        String wrong1 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_1));
-        String wrong2 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_2));
-        String wrong3 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_3));
-        long levelId = cursor.getLong(cursor.getColumnIndex(dh.LEVEL_ID));
-        long nextQuestion = cursor.getLong(cursor.getColumnIndex(dh.NEXT_QUESTION));
+        if(cursor.moveToFirst()) { //returns false if the Cursor is empty
+            String question = cursor.getString(cursor.getColumnIndex(dh.QUESTION_TEXT));
+            //cursor.moveToNext()
+            String rightAnser = cursor.getString(cursor.getColumnIndex(dh.RIGHT_ANS));
+            String wrong1 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_1));
+            String wrong2 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_2));
+            String wrong3 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_3));
+            long levelId = cursor.getLong(cursor.getColumnIndex(dh.LEVEL_ID));
+            long nextQuestion = cursor.getLong(cursor.getColumnIndex(dh.NEXT_QUESTION));
+            regularQuestion = new RegularQuestion(question, rightAnser, wrong1, wrong2, wrong3, levelId, nextQuestion);
+        }
 
-        RegularQuestion regularQuestion = new RegularQuestion(question, rightAnser, wrong1, wrong2, wrong3, levelId, nextQuestion);
+        cursor.close();
         db.close();
 
-        return regularQuestion;
+        return regularQuestion; // this will be null if the cursor is empty
     }
 }
