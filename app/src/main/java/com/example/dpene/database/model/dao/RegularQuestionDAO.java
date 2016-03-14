@@ -66,7 +66,7 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
             String wrong3 = cursor.getString(cursor.getColumnIndex(dh.WRONG_ANS_3));
             long levelId = cursor.getLong(cursor.getColumnIndex(dh.LEVEL_ID));
             long nextQuestion = cursor.getLong(cursor.getColumnIndex(dh.NEXT_QUESTION));
-            regularQuestion = new RegularQuestion(question, rightAnser, wrong1, wrong2, wrong3, levelId, nextQuestion);
+            regularQuestion = new RegularQuestion("Nqkakuv Vupros", "veren", "greshen", "greshen", "oshte po greshen", 1, 2);
         }
 
         cursor.close();
