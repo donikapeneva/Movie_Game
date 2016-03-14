@@ -8,17 +8,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
+import com.example.dpene.database.model.PlayerManager;
+
 import java.util.logging.Handler;
 
 public class LoadingActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private int fullProgressBar = 100;
+    private PlayerManager playerManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+
+        playerManager = PlayerManager.getInstance(this);
 
         progressBar = (ProgressBar) findViewById(R.id.loading_page_progressbar);
         progressBar.setProgress(0);
@@ -37,8 +42,12 @@ public class LoadingActivity extends AppCompatActivity {
                     }
                 }
 
-                Intent nextActivity = new Intent(LoadingActivity.this, LetterActivity.class);
-                startActivity(nextActivity);
+                if(playerManager.getLevel() == 1){
+                    startActivity(new Intent(LoadingActivity.this, LetterActivity.class));
+                }
+                else{
+                    startActivity(new Intent(LoadingActivity.this, MapActivity.class));
+                }
             }
         }).start();
 
