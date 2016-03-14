@@ -79,11 +79,11 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View view){
         Button clicked = (Button) view;
-        if(clicked.getText().equals(rightAnswer)){
+        if(clicked.getText().toString().equals(rightAnswer)){
             //change the color of the button to show the player it was the right answer
             clicked.setBackgroundResource(R.color.rightAnswer);
 
-            long nextQuestionId = this.regularQuestion.getNextQuestion();
+           /* long nextQuestionId = this.regularQuestion.getNextQuestion();
             playerManager.setReachedQuestionId(nextQuestionId);
 
             if(nextQuestionId == 1){
@@ -101,6 +101,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                     startActivity(nextQuestion);
                 }
             }
+            */
 
         } else {
             //red color for wrong answer
