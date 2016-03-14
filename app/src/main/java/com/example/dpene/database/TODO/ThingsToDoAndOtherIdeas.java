@@ -17,5 +17,10 @@ public class ThingsToDoAndOtherIdeas {
     osven ako ne e dal logOut
      */
 
+    /*
+    da smenim gadniq cvqt na winning activity..
+    dopulnitelna funkcionalnost: vruzka s camera -> snimka na player-a da izliza v win win krugcheto ^^
+     */
+
 
 }
