@@ -33,21 +33,6 @@ public class Player {
         this.reachedQuestion = reachedQuestion;
     }
 
-    //TODO see if we need this method and where do we make the validation
-    //we can make it with throws exception, and then with error in the activity
-    private void setName(String name) {
-        try {
-            if (this.name == null || this.name.length() < 3 || this.name == "") {
-                throw new IncorrectInputException();
-            }
-        } catch (IncorrectInputException e) {
-            if (this.name == null || this.name == "") {
-            } else {
-            }
-            this.setName(name);
-        }
-    }
-
     public long getIdOfLevel() {
         return idOfLevel;
     }
@@ -61,20 +46,6 @@ public class Player {
     public String getEmail() {
         return this.email;
     }
-
-    //TODO see if we need this method and where do we make the validation
-    //we can make it with throws exception, and then with error in the activity
-    private void setPassword() {
-        try {
-            String pattern = "(?=.*[0-9])(?=.*[a-z]).{5,10}";
-            if (this.password == null || !this.password.matches(pattern)) {
-                throw new IncorrectInputException();
-            }
-        } catch (IncorrectInputException e) {
-            this.setPassword();
-        }
-    }
-
 
     public String getPassword() {
         return this.password;
