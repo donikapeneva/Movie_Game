@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Player {
 
-
     private static final int WON_LIVES = 2;
     private static final int MAX_LIVES = 3;
 
@@ -33,22 +32,27 @@ public class Player {
         this.reachedQuestion = reachedQuestion;
     }
 
-    public long getIdOfLevel() {
-        return idOfLevel;
+    public void setReachedQuestionId(long nextQuestionId){
+        this.reachedQuestionId = nextQuestionId;
     }
 
-    //TODO do we use this method
+    public void setIdOfLevel(long nextLevelId){
+        this.idOfLevel = nextLevelId;
+    }
+
     public String getName() {
         return this.name;
     }
 
-    //TODO do we use this method
     public String getEmail() {
         return this.email;
     }
 
     public String getPassword() {
         return this.password;
+    }
+    public long getIdOfLevel() {
+        return idOfLevel;
     }
 
     public int getReachedQuestion() {
@@ -57,6 +61,10 @@ public class Player {
 
     public long getReachedQuestionId(){
         return this.reachedQuestionId;
+    }
+
+    public int getReachedLevel() {
+        return (int) idOfLevel;
     }
 
     public boolean loseLifeAndGoToLogicQuestion() {
@@ -79,16 +87,5 @@ public class Player {
             return false;
         }
     }
-
-    public void setReachedQuestionId(long nextQuestionId){
-        this.reachedQuestionId = nextQuestionId;
-    }
-
-    public void setIdOfLevel(long nextLevelId){
-        this.idOfLevel = nextLevelId;
-    }
-
-    public int getReachedLevel() {
-        return (int) idOfLevel;
-    }
+    
 }
