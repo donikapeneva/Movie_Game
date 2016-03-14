@@ -47,10 +47,12 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         answer4_button = (Button) findViewById(R.id.answer4_button);
         answer4_button.setOnClickListener(this);
 
-        this.playerManager = PlayerManager.getInstance(this);
+       // this.playerManager = PlayerManager.getInstance(this);
 
-        regularQuestionDAO = new RegularQuestionDAO(this);
-        this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
+      //  regularQuestionDAO = new RegularQuestionDAO(this);
+      //  this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
+            this.regularQuestion = new RegularQuestion("This is question?", "I am the right Answer", "I am the wrong :(", "Wrong 2 :((",
+                    "You fools i am the right answer", 1, 2);
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
