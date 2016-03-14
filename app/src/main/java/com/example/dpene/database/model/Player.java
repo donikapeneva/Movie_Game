@@ -13,15 +13,12 @@ public class Player {
     private String name;
     private String password;
     private String email;
-    private Level reachedLevel;
 
     // reachedQ i reachedL defaultno = 1
     private long idOfLevel;
     private int reachedQuestion;
     private long reachedQuestionId;
-    private List<Level> levels;
     private int lives;
-
 
     public Player(String email, String username, String password) {
         this.email = email;
@@ -83,10 +80,6 @@ public class Player {
         return this.password;
     }
 
-    public Level getLevel() {
-        return this.reachedLevel;
-    }
-
     public int getReachedQuestion() {
         return this.reachedQuestion;
     }
@@ -123,16 +116,6 @@ public class Player {
     public void setIdOfLevel(long nextLevelId){
         this.idOfLevel = nextLevelId;
     }
-
-    private void levelUp() {
-        if (this.idOfLevel == this.levels.size() - 1) {
-        } else {
-            this.idOfLevel++;
-            this.reachedLevel = this.levels.get((int) this.idOfLevel);
-            this.reachedQuestion = 0;
-        }
-    }
-
 
     public int getReachedLevel() {
         return (int) idOfLevel;

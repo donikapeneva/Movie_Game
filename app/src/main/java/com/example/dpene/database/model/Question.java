@@ -1,6 +1,6 @@
 package com.example.dpene.database.model;
 
-public class Question {
+public abstract class Question {
     private String question;
     private String rightAnswer;
 
