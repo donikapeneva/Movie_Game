@@ -107,7 +107,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //red color for wrong answer
             clicked.setBackgroundResource(R.color.wrongAnswer);
 
-            boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
+           /* boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
             if(goToLogicalQuestion){
                 Intent nextActivity = new Intent(this, SaveLifeActivity.class);
                 startActivity(nextActivity);
@@ -115,7 +115,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 //TODO show the player that he has lost a life
                 LoseLifeFragment loseLife = new LoseLifeFragment();
                 loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
-            }
+            } */
         }
     }
 }
