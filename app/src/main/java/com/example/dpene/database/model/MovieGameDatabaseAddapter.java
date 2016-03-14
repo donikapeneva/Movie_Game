@@ -25,7 +25,9 @@ public class MovieGameDatabaseAddapter {
         values.put(MovieGameHelper.PASSWORD, player.getPassword());
         // TODO: create method for email
 //        values.put(MovieGameHelper.EMAIL, player.getEmail());
-        values.put(MovieGameHelper.LEVEL, player.getLevel().getNumberOfLevel());
+
+        //Git -> Some Changes in Player, Abstract Class Question
+//        values.put(MovieGameHelper.LEVEL, player.getLevel().getNumberOfLevel());
         values.put(MovieGameHelper.QUESTION, player.getReachedQuestion());
 
         long userId = db.insert(MovieGameHelper.TABLE_USER, null, values);
