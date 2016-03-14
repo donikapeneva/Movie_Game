@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
-public class RegularQuestionActivity extends AppCompatActivity {
+public class RegularQuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView regQuestionTextView;
     private Button answer1_button;
@@ -39,9 +39,13 @@ public class RegularQuestionActivity extends AppCompatActivity {
 
         regQuestionTextView = (TextView) findViewById(R.id.regular_question_text);
         answer1_button = (Button) findViewById(R.id.answer1_button);
+        answer1_button.setOnClickListener(this);
         answer2_button = (Button) findViewById(R.id.answer2_button);
+        answer2_button.setOnClickListener(this);
         answer3_button = (Button) findViewById(R.id.answer3_button);
+        answer3_button.setOnClickListener(this);
         answer4_button = (Button) findViewById(R.id.answer4_button);
+        answer4_button.setOnClickListener(this);
 
         this.playerManager = PlayerManager.getInstance(this);
 
@@ -68,6 +72,7 @@ public class RegularQuestionActivity extends AppCompatActivity {
 
     }
 
+    @Override
     public void onClick(View view){
         Button clicked = (Button) view;
         if(clicked.getText().equals(rightAnswer)){
