@@ -3,6 +3,7 @@ package com.example.dpene.database.model.dao;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.dpene.database.model.DatabaseHelper;
 import com.example.dpene.database.model.LogicQuestion;
@@ -24,19 +25,27 @@ public class LogicQuestionDAO implements ILogicQuestionDAO {
         int max = this.getAllLogicQuestions().size() - 1;
         int randomQuestion = min + (int) (Math.random() * ((max - min) + min));
 
+        SQLiteDatabase db = dh.getReadableDatabase();
+
         String query = "SELECT * FROM " + dh.TABLE_LOGIC_QUESTION
                 + " WHERE " + dh.UID_LOGIC_QUESTION + " = \"" + randomQuestion + "\"";
 
-        SQLiteDatabase db = dh.getReadableDatabase();
+
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor != null)
             cursor.moveToFirst();
 
-        String question = cursor.getString(cursor.getColumnIndex(dh.LOGIC_QUESTION));
-        String answer = cursor.getString(cursor.getColumnIndex(dh.LOGIC_ANSWER));
+//        String question = cursor.getString(cursor.getColumnIndex(dh.LOGIC_QUESTION));
+//        String answer = cursor.getString(cursor.getColumnIndex(dh.LOGIC_ANSWER));
+
+        String question = "What do you want from meee??";
+        String answer = "...";
 
         LogicQuestion logicQuestion = new LogicQuestion(question, answer);
+
+        Log.e("PLS", logicQuestion.getQuestion() + "");
+
         db.close();
         return logicQuestion;
     }
