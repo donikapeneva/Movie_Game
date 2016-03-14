@@ -12,5 +12,10 @@ public class ThingsToDoAndOtherIdeas {
     slojim edna buleva promenliva hasSeenMap i ako e true da ne go puska tam???!!?!?!?
      */
 
+    /*
+    ako vednuj se e lognal, da ne trqbva da se logva pri sledvashto puskane na igrata,
+    osven ako ne e dal logOut
+     */
+
 
 }
