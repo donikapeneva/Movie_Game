@@ -7,5 +7,10 @@ public class ThingsToDoAndOtherIdeas {
 
     //TODO da zabranim back butona
 
+    /*
+    za da ne pokazva pismoto, kogato e izgorql i se vrushta v nachaloto, moje da mu
+    slojim edna buleva promenliva hasSeenMap i ako e true da ne go puska tam???!!?!?!?
+     */
+
 
 }
