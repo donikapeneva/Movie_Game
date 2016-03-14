@@ -71,7 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
                         isCorrect = false;
                     }
                 } else {
-                    password.setError("Please, insert strong password between 5 - 10 symbols");
+                    password.setError("Password must be between 5-10 characters and contain letters AND numbers or symbols");
                     isCorrect = false;
                 }
 
