@@ -8,7 +8,7 @@ public class Player {
 
 
     private static final int WON_LIVES = 2;
-    private static final int MAX_LIVES = 2;
+    private static final int MAX_LIVES = 3;
 
     private String name;
     private String password;
@@ -34,21 +34,6 @@ public class Player {
         this(email, username, password);
         this.idOfLevel = reachedLevel;
         this.reachedQuestion = reachedQuestion;
-    }
-
-    // TODO decide on a constructor
-    public Player(List<Level> levels) {
-        this.setName(name);
-
-        //password between 5 and 10 symbols (must contain letters AND numbers)");
-        this.setPassword();
-
-        this.levels = levels;
-        this.idOfLevel = 0;
-        this.reachedLevel = levels.get((int) idOfLevel);
-        this.reachedQuestion = 0;
-
-        this.lives = MAX_LIVES;
     }
 
     //TODO see if we need this method and where do we make the validation
