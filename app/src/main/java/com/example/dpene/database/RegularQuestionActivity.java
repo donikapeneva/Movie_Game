@@ -68,9 +68,9 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         Collections.shuffle(answers);
         int firstAns = 0;
         answer1_button.setText(answers.get(firstAns++));
-        answer1_button.setText(answers.get(firstAns++));
-        answer1_button.setText(answers.get(firstAns++));
-        answer1_button.setText(answers.get(firstAns));
+        answer2_button.setText(answers.get(firstAns++));
+        answer3_button.setText(answers.get(firstAns++));
+        answer4_button.setText(answers.get(firstAns));
 
     }
 
