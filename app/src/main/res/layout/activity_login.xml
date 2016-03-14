@@ -18,10 +18,11 @@
 
             <ImageView
                 android:id="@+id/login_image_view"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:layout_height="200dp"
-                android:background="@drawable/do_you_wanna_play_a_game" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/want_to_play_game" />
 
             <LinearLayout
 
