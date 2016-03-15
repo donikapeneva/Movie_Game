@@ -23,4 +23,9 @@ public class SaveLifeActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

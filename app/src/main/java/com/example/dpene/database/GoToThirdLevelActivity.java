@@ -10,4 +10,9 @@ public class GoToThirdLevelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_go_to_third_level);
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

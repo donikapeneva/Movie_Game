@@ -27,5 +27,10 @@ public class GameOverActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }
 

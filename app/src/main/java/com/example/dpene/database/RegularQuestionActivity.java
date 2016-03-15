@@ -67,6 +67,11 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     }
 
     @Override
+    public void onBackPressed() {
+        startActivity(new Intent(RegularQuestionActivity.this, MapActivity.class));
+    }
+
+    @Override
     public void onClick(View view) {
        clicked = (Button) view;
         if (clicked.getText().toString().equals(rightAnswer)) {

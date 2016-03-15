@@ -25,4 +25,9 @@ public class GoToSecondLevelActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

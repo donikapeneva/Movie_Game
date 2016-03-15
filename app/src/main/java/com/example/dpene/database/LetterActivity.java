@@ -27,4 +27,9 @@ public class LetterActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

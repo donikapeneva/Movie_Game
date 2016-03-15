@@ -50,10 +50,10 @@ public class LoadingActivity extends AppCompatActivity {
                 }
             }
         }).start();
+    }
 
-
-
-
+    @Override
+    public void onBackPressed() {
 
     }
 }

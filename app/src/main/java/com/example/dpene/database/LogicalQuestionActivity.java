@@ -47,4 +47,9 @@ public class LogicalQuestionActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(LogicalQuestionActivity.this, MapActivity.class));
+    }
 }

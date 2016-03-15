@@ -27,4 +27,9 @@ public class WinningActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

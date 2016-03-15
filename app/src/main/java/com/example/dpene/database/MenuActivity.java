@@ -47,4 +47,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
         startActivity(nextActivity);
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }
