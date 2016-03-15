@@ -54,11 +54,12 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         heart2 = (ImageView) findViewById(R.id.heart2_reg_question);
         heart3 = (ImageView) findViewById(R.id.heart3_reg_question);
 
-       // showHearts();
+
 
         this.playerManager = PlayerManager.getInstance(this);
-        Log.e("VIJ ME", "" + playerManager.getReachedQuestionId());
         this.regularQuestion = RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
+
+        showHearts();
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
@@ -87,7 +88,9 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //change the color of the button to show the player it was the right answer
             clicked.setBackgroundResource(R.color.rightAnswer);
 
+            //update reached qestion of the player
             Integer nextQuestionId = this.regularQuestion.getNextQuestion();
+            Log.e("LALALAL", nextQuestionId + "");
             playerManager.setReachedQuestionId(nextQuestionId);
 
             if(nextQuestionId == null){
@@ -176,13 +179,11 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
     @Override
     public void communicate() {
-        // TODO playerManager.loseLife();
-
-       // this.showHearts();
+        this.showHearts();
     }
 
 
-  /*  private void showHearts(){
+    private void showHearts(){
         switch(playerManager.getLives()){
             case 3:
                 heart1.setVisibility(View.VISIBLE);
@@ -206,5 +207,5 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 break;
         }
     }
-    */
+
 }
