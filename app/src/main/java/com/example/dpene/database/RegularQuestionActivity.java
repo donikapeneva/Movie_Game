@@ -1,6 +1,7 @@
 package com.example.dpene.database;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -58,7 +59,10 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         this.playerManager = PlayerManager.getInstance(this);
         this.regularQuestion = RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
 
-        this.randomizer(regularQuestion);
+        ShowNextQuestionTask sn = new ShowNextQuestionTask();
+        sn.execute();
+
+       // this.randomizer(regularQuestion);
 
         showHearts();
 
@@ -114,7 +118,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                         public void run() {
                             try {
                                 Thread.sleep(1000);
-                                //------Async Task
+                                showNextQuestion();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -164,10 +168,11 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
     public void showNextQuestion(){
         this.regularQuestion =  RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
-        randomizer(regularQuestion);
+        ShowNextQuestionTask task = new ShowNextQuestionTask();
+        task.execute();
     }
 
-    public void randomizer(RegularQuestion rq){
+  /*  public void randomizer(RegularQuestion rq){
 
         this.regQuestionTextView.setText(rq.getQuestion());
 
@@ -187,7 +192,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         answer3_button.setText(answers.get(firstAns++));
         answer4_button.setText(answers.get(firstAns));
     }
-
+*/
     @Override
     public void communicate() {
         this.showHearts();
@@ -216,6 +221,39 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 heart2.setVisibility(View.INVISIBLE);
                 heart3.setVisibility(View.INVISIBLE);
                 break;
+        }
+    }
+
+    public class ShowNextQuestionTask extends AsyncTask<Void, Void, Void> {
+
+        ArrayList<String> answers;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            rightAnswer = regularQuestion.getRightAnswer();
+
+            this.answers = new ArrayList<String>();
+            answers.add(rightAnswer);
+            String[] wrongAnswers = regularQuestion.getWrongAnswers();
+            for (String ans : wrongAnswers) {
+                answers.add(ans);
+            }
+
+            Collections.shuffle(answers);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            regQuestionTextView.setText(regularQuestion.getQuestion());
+
+            int firstAns = 0;
+            answer1_button.setText(answers.get(firstAns++));
+            answer2_button.setText(answers.get(firstAns++));
+            answer3_button.setText(answers.get(firstAns++));
+            answer4_button.setText(answers.get(firstAns));
         }
     }
 
