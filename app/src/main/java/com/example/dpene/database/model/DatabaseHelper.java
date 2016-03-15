@@ -1,13 +1,10 @@
 package com.example.dpene.database.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.dpene.database.model.dao.IRegularQuestionDAO;
-import com.example.dpene.database.model.dao.LogicQuestionDAO;
-import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -124,10 +121,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_LEVEL);
             db.execSQL(CREATE_TABLE_QUESTION);
             db.execSQL(CREATE_TABLE_LOGIC_QUESTION);
-
-            RegularQuestionDAO.getInstance(context).addRegularQuestions();
-            LogicQuestionDAO.getInstance(context).addLogicQuestions();
-
+            addRegularQuestions(db);
+            addLogicQuestions(db);
             db.execSQL(INSERT_INTO_LOGIC_QUESTION);
         } catch (SQLException e) {
         }
@@ -148,5 +143,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen())
             db.close();
+    }
+
+    private void addRegularQuestions(SQLiteDatabase db) {
+        for(RegularQuestion rq : RegularQuestionManager.questions){
+            ContentValues values = new ContentValues();
+
+            values.put(QUESTION_TEXT, rq.getQuestion());
+            values.put(RIGHT_ANS, rq.getRightAnswer());
+
+            String[] wrongAns = rq.getWrongAnswers();
+            values.put(WRONG_ANS_1, wrongAns[0]);
+            values.put(WRONG_ANS_2, wrongAns[1]);
+            values.put(WRONG_ANS_3, wrongAns[2]);
+
+            values.put(NEXT_QUESTION, rq.getNextQuestion());
+            values.put(LEVEL_ID, rq.getLevelId());
+
+            long regQuestionId = db.insert(TABLE_QUESTION, null, values);
+            rq.setQuestionId((int) regQuestionId);
+        }
+    }
+
+    private void addLogicQuestions(SQLiteDatabase db) {
+
+        for (LogicQuestion q : LogicQuestionManager.questions) {
+            ContentValues values = new ContentValues();
+
+            values.put(LOGIC_QUESTION, q.getQuestion());
+            values.put(LOGIC_ANSWER, q.getRightAnswer());
+
+            long logicQuestionId = db.insert(TABLE_LOGIC_QUESTION, null, values);
+            q.setLogicQuestionId((int) logicQuestionId);
+        }
     }
 }

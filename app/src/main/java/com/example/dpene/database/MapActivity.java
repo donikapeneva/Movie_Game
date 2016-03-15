@@ -36,7 +36,7 @@ public class MapActivity extends AppCompatActivity {
         levelHogwarts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextActivity = new Intent(MapActivity.this, RegularQuestionActivity.class);
+                Intent nextActivity = new Intent(MapActivity.this, LogicalQuestionActivity.class);
                 startActivity(nextActivity);
             }
         });

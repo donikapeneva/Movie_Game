@@ -30,32 +30,6 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
         return instanceRegQDAO;
     }
 
-    @Override
-    public long addRegularQuestions() {
-        SQLiteDatabase db = dh.getWritableDatabase();
-        long regQuestionId = -1;
-
-        for(RegularQuestion rq : RegularQuestionManager.questions){
-            ContentValues values = new ContentValues();
-
-            values.put(dh.QUESTION_TEXT, rq.getQuestion());
-            values.put(dh.RIGHT_ANS, rq.getRightAnswer());
-
-            String[] wrongAns = rq.getWrongAnswers();
-            values.put(dh.WRONG_ANS_1, wrongAns[0]);
-            values.put(dh.WRONG_ANS_2, wrongAns[1]);
-            values.put(dh.WRONG_ANS_3, wrongAns[2]);
-
-            values.put(dh.NEXT_QUESTION, rq.getNextQuestion());
-            values.put(dh.LEVEL_ID, rq.getLevelId());
-
-            regQuestionId = db.insert(dh.TABLE_QUESTION, null, values);
-            rq.setQuestionId((int) regQuestionId);
-        }
-        db.close();
-
-        return regQuestionId;
-    }
 
     @Override
     public RegularQuestion getRegularQuestion(int regQuestionId) {

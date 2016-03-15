@@ -58,23 +58,6 @@ public class LogicQuestionDAO implements ILogicQuestionDAO {
         return logicQuestion;
     }
 
-    @Override
-    public void addLogicQuestions() {
-        SQLiteDatabase db = dh.getWritableDatabase();
-
-        for (LogicQuestion q : LogicQuestionManager.questions) {
-            ContentValues values = new ContentValues();
-
-            values.put(dh.LOGIC_QUESTION, q.getQuestion());
-            values.put(dh.LOGIC_ANSWER, q.getRightAnswer());
-
-            long logicQuestionId = db.insert(dh.TABLE_LOGIC_QUESTION, null, values);
-            q.setLogicQuestionId((int) logicQuestionId);
-        }
-
-        db.close();
-    }
-
 
     public List<LogicQuestion> getAllLogicQuestions() {
         ArrayList<LogicQuestion> listOfQuestions = new ArrayList<>();
