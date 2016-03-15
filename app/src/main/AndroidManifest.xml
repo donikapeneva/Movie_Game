@@ -25,7 +25,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SaveLifeActivity" />
         <activity android:name=".RebornActivity" />
-        <activity android:name=".WinningActivity"></activity>
+        <activity android:name=".WinningActivity" />
+        <activity android:name=".GoToNextLevelActivity"></activity>
     </application>
 
 </manifest>
