@@ -56,7 +56,7 @@ public class Player {
     }
 
     public boolean loseLifeAndGoToLogicQuestion() {
-        if (this.lives == 0) {
+        if (this.lives == 1) {
             return true;
         } else {
             this.lives--;
