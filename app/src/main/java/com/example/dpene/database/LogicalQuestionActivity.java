@@ -40,7 +40,8 @@ public class LogicalQuestionActivity extends AppCompatActivity {
                     playerManager.playerWinLives();
                     startActivity(new Intent(LogicalQuestionActivity.this, RebornActivity.class));
                 } else {
-                    // TODO zanulqvane na level i question, hearts
+                    playerManager.setIdOfLevel(1);
+                    playerManager.setReachedQuestionId(1);
                     startActivity(new Intent(LogicalQuestionActivity.this, GameOverActivity.class));
                 }
             }
