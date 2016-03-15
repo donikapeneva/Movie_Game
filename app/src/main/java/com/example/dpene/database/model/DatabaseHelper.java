@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "MOVIE_GAME_DATABASE";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
     // tables
     public static final String TABLE_PLAYER = "player";
@@ -131,9 +131,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LEVEL);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIC_QUESTION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LEVEL);
 
         onCreate(db);
     }

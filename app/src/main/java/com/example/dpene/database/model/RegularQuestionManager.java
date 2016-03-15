@@ -7,19 +7,8 @@ import java.util.HashSet;
  */
 public class RegularQuestionManager {
 
-    public static HashSet<RegularQuestion> questions;
-    private static RegularQuestionManager ourInstance = null;
-
-    public static RegularQuestionManager getInstance() {
-        if(ourInstance == null){
-            ourInstance = new RegularQuestionManager();
-        }
-        return ourInstance;
-    }
-
-    private RegularQuestionManager() {
-        this.questions = new HashSet<RegularQuestion>();
-
+    public static HashSet<RegularQuestion> questions = new HashSet<>();
+    static{
         RegularQuestion q1 = new RegularQuestion("What are Harry's friend's names?", "Ron & Hermonie", "Jack & Kate",
                 "Crab & Goil", "Ross & Rachel", 1, 2);
         questions.add(q1);
@@ -76,6 +65,17 @@ public class RegularQuestionManager {
 
         RegularQuestion q15 = new RegularQuestion("WHow many seasons has Prison Break?", "4", "6", "5", "3", 2, null);
         questions.add(q15);
+    }
+    private static RegularQuestionManager ourInstance = null;
+
+    public static RegularQuestionManager getInstance() {
+        if(ourInstance == null){
+            ourInstance = new RegularQuestionManager();
+        }
+        return ourInstance;
+    }
+
+    private RegularQuestionManager() {
 
     }
 }

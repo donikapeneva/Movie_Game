@@ -8,15 +8,8 @@ import java.util.HashSet;
 
 public class LogicQuestionManager {
 
-    public static HashSet<LogicQuestion> questions;
-
-    private static LogicQuestionManager instance;
-    private LogicQuestionDAO logicQuestionDAO;
-
-    private LogicQuestionManager(Context context) {
-        this.logicQuestionDAO = LogicQuestionDAO.getInstance(context);
-
-        questions = new HashSet<>();
+    public static HashSet<LogicQuestion> questions = new HashSet<>();
+    static{
         questions.add(new LogicQuestion("Are you stupid?", "yes"));
         questions.add(new LogicQuestion("Are you stupid_2", "yes_2"));
         questions.add(new LogicQuestion("Are you stupid_3", "yes_3"));
@@ -26,6 +19,12 @@ public class LogicQuestionManager {
         questions.add(new LogicQuestion("M?", "m_1"));
         questions.add(new LogicQuestion("M2?", "m_2"));
         questions.add(new LogicQuestion("M3?", "m_3"));
+    }
+    private static LogicQuestionManager instance;
+    private LogicQuestionDAO logicQuestionDAO;
+
+    private LogicQuestionManager(Context context) {
+        this.logicQuestionDAO = LogicQuestionDAO.getInstance(context);
 
     }
 
