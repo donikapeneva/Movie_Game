@@ -1,5 +1,9 @@
 package com.example.dpene.database.model;
 
+import android.content.Context;
+
+import com.example.dpene.database.model.dao.RegularQuestionDAO;
+
 import java.util.HashSet;
 
 /**
@@ -77,5 +81,9 @@ public class RegularQuestionManager {
 
     private RegularQuestionManager() {
 
+    }
+
+    public RegularQuestion getRegularQuestion(Context context, int id){
+       return RegularQuestionDAO.getInstance(context).getRegularQuestion(id);
     }
 }
