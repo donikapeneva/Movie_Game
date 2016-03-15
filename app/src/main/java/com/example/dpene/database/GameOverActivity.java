@@ -20,7 +20,6 @@ public class GameOverActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//               TODO chenge the other activity
                 Intent nextActivity = new Intent(GameOverActivity.this, LoadingActivity.class);
                 startActivity(nextActivity);
 

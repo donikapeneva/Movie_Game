@@ -19,7 +19,6 @@ public class RebornActivity extends AppCompatActivity {
         this.tapToContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO kum MapActivity ili kum reachedRegularQuestion :?
                 startActivity(new Intent(RebornActivity.this, MapActivity.class));
             }
         });
