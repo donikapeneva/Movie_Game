@@ -191,8 +191,6 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
         @Override
         protected void onPreExecute() {
-            if(changeColor)
-                clicked.setBackgroundResource(R.color.regularQButton);
         }
 
         @Override
@@ -200,19 +198,21 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
             try {
                 Thread.sleep(1000);
+
+                rightAnswer = regularQuestion.getRightAnswer();
+
+                this.answers = new ArrayList<String>();
+                answers.add(rightAnswer);
+                String[] wrongAnswers = regularQuestion.getWrongAnswers();
+                for (String ans : wrongAnswers) {
+                    answers.add(ans);
+                }
+
+                Collections.shuffle(answers);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            rightAnswer = regularQuestion.getRightAnswer();
 
-            this.answers = new ArrayList<String>();
-            answers.add(rightAnswer);
-            String[] wrongAnswers = regularQuestion.getWrongAnswers();
-            for (String ans : wrongAnswers) {
-                answers.add(ans);
-            }
-
-            Collections.shuffle(answers);
 
             return null;
         }
@@ -220,6 +220,9 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         @Override
         protected void onPostExecute(Void aVoid) {
 
+            if(changeColor)
+                clicked.setBackgroundResource(R.color.regularQButton);
+            
             regQuestionTextView.setText(regularQuestion.getQuestion());
 
             int firstAns = 0;
