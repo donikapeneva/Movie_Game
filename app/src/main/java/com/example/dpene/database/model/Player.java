@@ -69,7 +69,7 @@ public class Player {
     }
 
     public boolean goToNextLevel(long levelId) {
-        if(levelId != idOfLevel){
+        if(levelId != this.idOfLevel){
             return true;
         } else {
             return false;
