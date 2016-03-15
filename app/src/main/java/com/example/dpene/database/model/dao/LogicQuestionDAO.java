@@ -46,11 +46,11 @@ public class LogicQuestionDAO implements ILogicQuestionDAO {
         if (cursor != null)
             cursor.moveToFirst();
 
-//        String question = cursor.getString(cursor.getColumnIndex(dh.LOGIC_QUESTION));
-//        String answer = cursor.getString(cursor.getColumnIndex(dh.LOGIC_ANSWER));
+        String question = cursor.getString(cursor.getColumnIndex(dh.LOGIC_QUESTION));
+        String answer = cursor.getString(cursor.getColumnIndex(dh.LOGIC_ANSWER));
 
-        String question = "What do you want from meee??";
-        String answer = "...";
+//        String question = "What do you want from meee??";
+//        String answer = "...";
 
         LogicQuestion logicQuestion = new LogicQuestion(question, answer);
 

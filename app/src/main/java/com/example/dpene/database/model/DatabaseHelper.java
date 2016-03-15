@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.dpene.database.model.dao.IRegularQuestionDAO;
+import com.example.dpene.database.model.dao.LogicQuestionDAO;
 import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -106,9 +107,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    private static Context context;
+
     public static DatabaseHelper getInstance(Context context){
-        if(instance == null)
+        if(instance == null) {
             instance = new DatabaseHelper(context);
+            context = context;
+        }
         return instance;
     }
 
@@ -119,7 +124,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_LEVEL);
             db.execSQL(CREATE_TABLE_QUESTION);
             db.execSQL(CREATE_TABLE_LOGIC_QUESTION);
+<<<<<<< HEAD
             RegularQuestionDAO.getInstance().addRegularQuestions();
+=======
+//            RegularQuestionDAO.
+            LogicQuestionDAO.getInstance(context).addLogicQuestions();
+>>>>>>> origin/master
             db.execSQL(INSERT_INTO_LOGIC_QUESTION);
         } catch (SQLException e) {
         }
