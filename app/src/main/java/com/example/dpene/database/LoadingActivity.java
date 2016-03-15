@@ -36,7 +36,7 @@ public class LoadingActivity extends AppCompatActivity {
                 while(progressBar.getProgress() < fullProgressBar){
                     progressBar.setProgress(progressBar.getProgress() + 10);
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
