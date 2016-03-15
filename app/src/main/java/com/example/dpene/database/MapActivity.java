@@ -26,8 +26,7 @@ public class MapActivity extends AppCompatActivity {
         this.playerManager = PlayerManager.getInstance(this);
 
         this.level = (TextView) findViewById(R.id.level);
-        this.level.setText("Level " + playerManager.getLevel());
-
+        
         this.heart1 = (ImageView) findViewById(R.id.heart1);
         this.heart2 = (ImageView) findViewById(R.id.heart2);
         this.heart3 = (ImageView) findViewById(R.id.heart3);
@@ -41,5 +40,37 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showHearts();
+        this.level.setText("Level " + playerManager.getLevel());
+    }
+
+    private void showHearts(){
+        switch(playerManager.getLives()){
+            case 3:
+                heart1.setVisibility(View.VISIBLE);
+                heart2.setVisibility(View.VISIBLE);
+                heart3.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                heart1.setVisibility(View.INVISIBLE);
+                heart2.setVisibility(View.VISIBLE);
+                heart3.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                heart1.setVisibility(View.INVISIBLE);
+                heart2.setVisibility(View.INVISIBLE);
+                heart3.setVisibility(View.VISIBLE);
+                break;
+            case 0:
+                heart1.setVisibility(View.INVISIBLE);
+                heart2.setVisibility(View.INVISIBLE);
+                heart3.setVisibility(View.INVISIBLE);
+                break;
+        }
     }
 }
