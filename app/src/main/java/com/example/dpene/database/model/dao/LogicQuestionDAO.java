@@ -1,5 +1,6 @@
 package com.example.dpene.database.model.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,17 +8,27 @@ import android.util.Log;
 
 import com.example.dpene.database.model.DatabaseHelper;
 import com.example.dpene.database.model.LogicQuestion;
+import com.example.dpene.database.model.LogicQuestionManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LogicQuestionDAO implements ILogicQuestionDAO {
 
+    private static LogicQuestionDAO instance;
     private DatabaseHelper dh;
 
-    public LogicQuestionDAO(Context context) {
+    private LogicQuestionDAO(Context context) {
         this.dh = DatabaseHelper.getInstance(context);
     }
+
+    public static LogicQuestionDAO getInstance(Context context) {
+        if (instance == null) {
+            return new LogicQuestionDAO(context);
+        }
+        return instance;
+    }
+
 
     public LogicQuestion getLogicQuestion() {
 
@@ -48,6 +59,34 @@ public class LogicQuestionDAO implements ILogicQuestionDAO {
 
         db.close();
         return logicQuestion;
+    }
+
+    @Override
+    public long addRegularQuestion(LogicQuestion regQuestion) {
+
+        SQLiteDatabase db = dh.getWritableDatabase();
+
+        for (LogicQuestion q : LogicQuestionManager.questions) {
+            ContentValues values = new ContentValues();
+
+            values.put(dh.LOGIC_QUESTION, regQuestion.getQuestion());
+            values.put(dh.RIGHT_ANS, regQuestion.getRightAnswer());
+
+            String[] wrongAns = regQuestion.getWrongAnswers();
+            values.put(dh.WRONG_ANS_1, wrongAns[0]);
+            values.put(dh.WRONG_ANS_2, wrongAns[1]);
+            values.put(dh.WRONG_ANS_3, wrongAns[2]);
+
+            values.put(dh.NEXT_QUESTION, regQuestion.getNextQuestion());
+            values.put(dh.LEVEL_ID, regQuestion.getLevelId());
+
+            long regQuestionId = db.insert(dh.TABLE_QUESTION, null, values);
+        }
+        db.close();
+
+        regQuestion.setQuestionId(regQuestionId);
+        return regQuestionId;
+
     }
 
     public List<LogicQuestion> getAllLogicQuestions() {
