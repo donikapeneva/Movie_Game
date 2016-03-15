@@ -10,15 +10,10 @@ public class LogicQuestionManager {
 
     public static HashSet<LogicQuestion> questions = new HashSet<>();
     static{
-        questions.add(new LogicQuestion("Are you stupid?", "yes"));
-        questions.add(new LogicQuestion("Are you stupid_2", "yes_2"));
-        questions.add(new LogicQuestion("Are you stupid_3", "yes_3"));
-        questions.add(new LogicQuestion("WTF?", "wtf_1"));
-        questions.add(new LogicQuestion("WTF2?", "wtf_2"));
-        questions.add(new LogicQuestion("WTF3?", "wtf_3"));
-        questions.add(new LogicQuestion("M?", "m_1"));
-        questions.add(new LogicQuestion("M2?", "m_2"));
-        questions.add(new LogicQuestion("M3?", "m_3"));
+        questions.add(new LogicQuestion("Kevin's parents had 5 sons total. Their names are Bab, Beb, Bib and Bob. What was the fifth child's name?", "Kevin"));
+        questions.add(new LogicQuestion("On average how many birthdays does a man have?", "1"));
+        questions.add(new LogicQuestion("If yoy write all the numbers from 300 to 400 how many times you have to write the number 3", "110"));
+        
     }
     private static LogicQuestionManager instance;
     private LogicQuestionDAO logicQuestionDAO;
