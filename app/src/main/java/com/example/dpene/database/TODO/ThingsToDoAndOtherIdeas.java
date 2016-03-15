@@ -26,4 +26,8 @@ public class ThingsToDoAndOtherIdeas {
     PlayerDAO Singleton
      */
 
+    /*
+    da zapazvame progresa na playera
+     */
+
 }
