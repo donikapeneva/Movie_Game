@@ -18,7 +18,7 @@ import com.example.dpene.database.model.RegularQuestionManager;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class RegularQuestionActivity extends AppCompatActivity implements View.OnClickListener, Communicator {
+public class RegularQuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView regQuestionTextView;
     private Button answer1_button;
@@ -116,6 +116,10 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //CHANGE THE COLOR OF THE BUTTON RED (wrong answer)
             clicked.setBackgroundResource(R.color.wrongAnswer);
 
+            //UPDATE REACHED QUESTION OF THE PLAYER
+            Integer nextQuestionId = this.regularQuestion.getNextQuestion();
+            playerManager.setReachedQuestionId(nextQuestionId);
+
             //PLAYER LOSES LIFE, IF HE DOESN'T HAVE LIVES TO LOSE HE SHOULD ANSWER TO A LOGICAL QUESTION
             boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
             if(goToLogicalQuestion){
@@ -134,8 +138,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 }).start();
             } else {
             // SHOW THE PLAYER THAT HE HAS LOST A LIFE THEN HE GOES TO THE NEXT QUESTION
-                LoseLifeFragment loseLife = new LoseLifeFragment();
-                loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
+                showHearts();
                 showNextQuestion();
             }
         }
@@ -147,12 +150,6 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         ShowQuestionTask task = new ShowQuestionTask(true);
         task.execute();
     }
-
-    @Override
-    public void communicate() {
-        this.showHearts();
-    }
-
 
     private void showHearts(){
         switch(playerManager.getLives()){
