@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +14,6 @@ import com.example.dpene.database.fragments.LoseLifeFragment;
 import com.example.dpene.database.model.PlayerManager;
 import com.example.dpene.database.model.RegularQuestion;
 import com.example.dpene.database.model.RegularQuestionManager;
-import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,10 +57,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         this.playerManager = PlayerManager.getInstance(this);
         this.regularQuestion = RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
 
-        ShowNextQuestionTask sn = new ShowNextQuestionTask();
-        sn.execute();
-
-       // this.randomizer(regularQuestion);
+        ShowQuestionTask sqt = new ShowQuestionTask();
+        sqt.execute();
 
         showHearts();
 
@@ -70,7 +66,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        Button clicked = (Button) view;
+       Button clicked = (Button) view;
         if (clicked.getText().toString().equals(rightAnswer)) {
             //CHANGE THE COLOR OF THE BUTTON TO GREEN (for right answer)
             clicked.setBackgroundResource(R.color.rightAnswer);
@@ -113,17 +109,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                     }).start();
                 } else {
                     //SHOW THE NEXT QUESTION
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(1000);
-                                showNextQuestion();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
+                    ShowNextQuestion snq = new ShowNextQuestion(clicked);
+                    snq.start();
                 }
             }
         } else {
@@ -155,7 +142,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                             Thread.sleep(1000);
                             LoseLifeFragment loseLife = new LoseLifeFragment();
                             loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
-                            //--------------Async Task
+                          //  returnButton(clicked);
+                            showNextQuestion();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -166,33 +154,17 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
     }
 
+    public void returnButton(Button b){
+        b = (Button)findViewById(b.getId());
+    }
+
+
     public void showNextQuestion(){
         this.regularQuestion =  RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
-        ShowNextQuestionTask task = new ShowNextQuestionTask();
+        ShowQuestionTask task = new ShowQuestionTask();
         task.execute();
     }
 
-  /*  public void randomizer(RegularQuestion rq){
-
-        this.regQuestionTextView.setText(rq.getQuestion());
-
-        this.rightAnswer = rq.getRightAnswer();
-
-        ArrayList<String> answers = new ArrayList<String>();
-        answers.add(rightAnswer);
-        String[] wrongAnswers = rq.getWrongAnswers();
-        for (String ans : wrongAnswers) {
-            answers.add(ans);
-        }
-
-        Collections.shuffle(answers);
-        int firstAns = 0;
-        answer1_button.setText(answers.get(firstAns++));
-        answer2_button.setText(answers.get(firstAns++));
-        answer3_button.setText(answers.get(firstAns++));
-        answer4_button.setText(answers.get(firstAns));
-    }
-*/
     @Override
     public void communicate() {
         this.showHearts();
@@ -224,7 +196,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         }
     }
 
-    public class ShowNextQuestionTask extends AsyncTask<Void, Void, Void> {
+    public class ShowQuestionTask extends AsyncTask<Void, Void, Void> {
 
         ArrayList<String> answers;
 
@@ -247,6 +219,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
         @Override
         protected void onPostExecute(Void aVoid) {
+
             regQuestionTextView.setText(regularQuestion.getQuestion());
 
             int firstAns = 0;
@@ -254,6 +227,26 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             answer2_button.setText(answers.get(firstAns++));
             answer3_button.setText(answers.get(firstAns++));
             answer4_button.setText(answers.get(firstAns));
+        }
+    }
+
+    public class ShowNextQuestion extends Thread{
+
+        private Button clicked;
+
+        public ShowNextQuestion(Button clicked){
+            this.clicked = clicked;
+        }
+
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(1000);
+                returnButton(clicked);
+                showNextQuestion();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

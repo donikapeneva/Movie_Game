@@ -8,4 +8,6 @@
     <color name="rightAnswer">#ee50c13a</color>
     <color name="wrongAnswer">#eef72f32</color>
     <color name="logicText">#0D132B</color>
+
+    <color name="regularQButton">#616161</color>
 </resources>
