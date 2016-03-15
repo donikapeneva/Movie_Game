@@ -36,7 +36,8 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 nextActivity = new Intent(this, MapActivity.class);
                 break;
             case R.id.exit_button:
-                //for now it will be blank
+                //for now it will go back to logIN
+                nextActivity = new Intent(this, LoginActivity.class);
                 break;
             case R.id.switch_user_button:
                 nextActivity = new Intent(this, LoginActivity.class);
