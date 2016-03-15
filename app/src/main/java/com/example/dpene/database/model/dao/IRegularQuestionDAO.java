@@ -7,7 +7,7 @@ import com.example.dpene.database.model.RegularQuestion;
  */
 public interface IRegularQuestionDAO {
 
-    long addRegularQuestion(RegularQuestion regQuestion);
-    RegularQuestion getRegularQuestion(long regQuestionId);
+    long addRegularQuestions();
+    RegularQuestion getRegularQuestion(int regQuestionId);
 
 }
