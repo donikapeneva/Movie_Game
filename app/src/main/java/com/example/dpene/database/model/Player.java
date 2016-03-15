@@ -87,5 +87,8 @@ public class Player {
             return false;
         }
     }
-    
+
+    public int getLives() {
+        return lives;
+    }
 }

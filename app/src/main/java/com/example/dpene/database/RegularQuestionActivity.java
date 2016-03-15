@@ -1,37 +1,36 @@
 package com.example.dpene.database;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dpene.database.fragments.Communicator;
 import com.example.dpene.database.fragments.LoseLifeFragment;
-import com.example.dpene.database.model.Player;
 import com.example.dpene.database.model.PlayerManager;
 import com.example.dpene.database.model.RegularQuestion;
-import com.example.dpene.database.model.dao.PlayerDAO;
 import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
-public class RegularQuestionActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegularQuestionActivity extends AppCompatActivity implements View.OnClickListener, Communicator {
 
     private TextView regQuestionTextView;
     private Button answer1_button;
     private Button answer2_button;
     private Button answer3_button;
     private Button answer4_button;
-    private RegularQuestionDAO regularQuestionDAO;
+    private RegularQuestionDAO regularQuestionDAO; // TODO tova ne trqbva da e tuk
     private RegularQuestion regularQuestion;
     private String rightAnswer;
     private PlayerManager playerManager;
+    private ImageView heart1;
+    private ImageView heart2;
+    private ImageView heart3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +48,19 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         answer4_button = (Button) findViewById(R.id.answer4_button);
         answer4_button.setOnClickListener(this);
 
+        heart1 = (ImageView) findViewById(R.id.heart1_reg_question);
+        heart2 = (ImageView) findViewById(R.id.heart2_reg_question);
+        heart3 = (ImageView) findViewById(R.id.heart3_reg_question);
+
+        showHearts();
 
         //TODO remove comments
-       // this.playerManager = PlayerManager.getInstance(this);
+        // this.playerManager = PlayerManager.getInstance(this);
 
-      //  regularQuestionDAO = new RegularQuestionDAO(this);
-      //  this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
-            this.regularQuestion = new RegularQuestion("This is question?", "I am the right Answer", "I am the wrong :(", "Wrong 2 :((",
-                    "You fools i am the right answer", 1, 2);
+        //  regularQuestionDAO = new RegularQuestionDAO(this);
+        //  this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
+        this.regularQuestion = new RegularQuestion("This is question?", "I am the right Answer", "I am the wrong :(", "Wrong 2 :((",
+                "You fools i am the right answer", 1, 2);
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
@@ -65,7 +69,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         ArrayList<String> answers = new ArrayList<String>();
         answers.add(rightAnswer);
         String[] wrongAnswers = regularQuestion.getWrongAnswers();
-        for(String ans : wrongAnswers){
+        for (String ans : wrongAnswers) {
             answers.add(ans);
         }
 
@@ -79,9 +83,9 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     }
 
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
         Button clicked = (Button) view;
-        if(clicked.getText().toString().equals(rightAnswer)){
+        if (clicked.getText().toString().equals(rightAnswer)) {
             //change the color of the button to show the player it was the right answer
             clicked.setBackgroundResource(R.color.rightAnswer);
 
@@ -116,10 +120,12 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 Intent nextActivity = new Intent(this, SaveLifeActivity.class);
                 startActivity(nextActivity);
             } else {
-                //TODO show the player that he has lost a life
-                LoseLifeFragment loseLife = new LoseLifeFragment();
-                loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
-            } */
+              */
+            //TODO vremeto kum map-a ne trqbva da vaji tuk D:
+            // kogato se startira minava vremeto za answerite i se vrushta na map-a
+            LoseLifeFragment loseLife = new LoseLifeFragment();
+            loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
+//            }
         }
 
         new Thread(new Runnable() {
@@ -135,5 +141,38 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             }
         }).start();
 
+    }
+
+    @Override
+    public void communicate() {
+        // TODO playerManager.loseLife();
+
+        this.showHearts();
+    }
+
+
+    private void showHearts(){
+        switch(playerManager.getLives()){
+            case 3:
+                heart1.setVisibility(View.VISIBLE);
+                heart2.setVisibility(View.VISIBLE);
+                heart3.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                heart1.setVisibility(View.INVISIBLE);
+                heart2.setVisibility(View.VISIBLE);
+                heart3.setVisibility(View.VISIBLE);
+                break;
+            case 1:
+                heart1.setVisibility(View.INVISIBLE);
+                heart2.setVisibility(View.INVISIBLE);
+                heart3.setVisibility(View.VISIBLE);
+                break;
+            case 0:
+                heart1.setVisibility(View.INVISIBLE);
+                heart2.setVisibility(View.INVISIBLE);
+                heart3.setVisibility(View.INVISIBLE);
+                break;
+        }
     }
 }

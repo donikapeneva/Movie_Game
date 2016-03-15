@@ -97,4 +97,7 @@ public class PlayerManager {
         return this.player.loseLifeAndGoToLogicQuestion();
     }
 
+    public int getLives() {
+        return player.getLives();
+    }
 }
