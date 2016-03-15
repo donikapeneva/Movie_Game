@@ -124,12 +124,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_LEVEL);
             db.execSQL(CREATE_TABLE_QUESTION);
             db.execSQL(CREATE_TABLE_LOGIC_QUESTION);
-<<<<<<< HEAD
-            RegularQuestionDAO.getInstance().addRegularQuestions();
-=======
-//            RegularQuestionDAO.
+
+            RegularQuestionDAO.getInstance(context).addRegularQuestions();
             LogicQuestionDAO.getInstance(context).addLogicQuestions();
->>>>>>> origin/master
+
             db.execSQL(INSERT_INTO_LOGIC_QUESTION);
         } catch (SQLException e) {
         }
