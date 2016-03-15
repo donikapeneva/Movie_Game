@@ -22,5 +22,9 @@ public class ThingsToDoAndOtherIdeas {
     dopulnitelna funkcionalnost: vruzka s camera -> snimka na player-a da izliza v win win krugcheto ^^
      */
 
+    /*
+    dali mojem da napravim 2-ta dialogovi fragmenta v edin kato modavame message ? i ot message shte
+    zavisi rezultata ?
+     */
 
 }
