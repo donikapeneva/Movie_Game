@@ -16,7 +16,7 @@ public class Player {
     // reachedQ i reachedL defaultno = 1
     private long idOfLevel;
     private int reachedQuestion;
-    private long reachedQuestionId;
+    private int reachedQuestionId;
     private int lives;
 
     public Player(String email, String username, String password) {
@@ -32,7 +32,7 @@ public class Player {
         this.reachedQuestion = reachedQuestion;
     }
 
-    public void setReachedQuestionId(long nextQuestionId){
+    public void setReachedQuestionId(int nextQuestionId){
         this.reachedQuestionId = nextQuestionId;
     }
 
@@ -59,7 +59,7 @@ public class Player {
         return this.reachedQuestion;
     }
 
-    public long getReachedQuestionId(){
+    public int getReachedQuestionId(){
         return this.reachedQuestionId;
     }
 

@@ -77,11 +77,11 @@ public class PlayerManager {
         player.winLives();
     }
 
-    public long getReachedQuestionId(){
+    public int getReachedQuestionId(){
         return this.player.getReachedQuestionId();
     }
 
-    public void setReachedQuestionId(long nextQuestionId){
+    public void setReachedQuestionId(int nextQuestionId){
         this.player.setReachedQuestionId(nextQuestionId);
     }
 

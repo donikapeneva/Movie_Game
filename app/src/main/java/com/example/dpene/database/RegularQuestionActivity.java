@@ -54,13 +54,10 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
         showHearts();
 
-        //TODO remove comments
-        // this.playerManager = PlayerManager.getInstance(this);
+        this.playerManager = PlayerManager.getInstance(this);
 
-        //  regularQuestionDAO = new RegularQuestionDAO(this);
-        //  this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
-        this.regularQuestion = new RegularQuestion("This is question?", "I am the right Answer", "I am the wrong :(", "Wrong 2 :((",
-                "You fools i am the right answer", 1, 2);
+        regularQuestionDAO.getInstance(this);
+        this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
@@ -89,57 +86,90 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //change the color of the button to show the player it was the right answer
             clicked.setBackgroundResource(R.color.rightAnswer);
 
-            //TODO remove coment
-           /* long nextQuestionId = this.regularQuestion.getNextQuestion();
+            Integer nextQuestionId = this.regularQuestion.getNextQuestion();
             playerManager.setReachedQuestionId(nextQuestionId);
 
-            if(nextQuestionId == 1){
-                Intent winning = new Intent(this, WinningActivity.class);
-                startActivity(winning);
+            if(nextQuestionId == null){
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                            Intent winning = new Intent(RegularQuestionActivity.this, WinningActivity.class);
+                            startActivity(winning);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             } else {
-                long reachedQuestionLevel = this.regularQuestion.getLevelId();
+                int reachedQuestionLevel = this.regularQuestion.getLevelId();
                 if (playerManager.goToNextLevel(reachedQuestionLevel)) {
                     playerManager.setIdOfLevel(reachedQuestionLevel);
                     //TODO show player that he goes a level up
-                    Intent nextActivity = new Intent(this, MapActivity.class);
-                    startActivity(nextActivity);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+                                Intent nextActivity = new Intent(RegularQuestionActivity.this, MapActivity.class);
+                                startActivity(nextActivity);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                 } else {
-                    Intent nextQuestion = new Intent(this, RegularQuestionActivity.class);
-                    startActivity(nextQuestion);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+                                Intent nextQuestion = new Intent(RegularQuestionActivity.this, RegularQuestionActivity.class);
+                                startActivity(nextQuestion);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                 }
             }
-            */
-
         } else {
             //red color for wrong answer
             clicked.setBackgroundResource(R.color.wrongAnswer);
 
-            //TODO remove comment
-           /* boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
+            boolean goToLogicalQuestion = playerManager.loseLifeAndGoToLogicQuestion();
             if(goToLogicalQuestion){
-                Intent nextActivity = new Intent(this, SaveLifeActivity.class);
-                startActivity(nextActivity);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                            Intent nextActivity = new Intent(RegularQuestionActivity.this, SaveLifeActivity.class);
+                            startActivity(nextActivity);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             } else {
-              */
             //TODO vremeto kum map-a ne trqbva da vaji tuk D:
             // kogato se startira minava vremeto za answerite i se vrushta na map-a
-            LoseLifeFragment loseLife = new LoseLifeFragment();
-            loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
-//            }
-        }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                    Intent next = new Intent(RegularQuestionActivity.this, MapActivity.class);
-                    startActivity(next);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                            LoseLifeFragment loseLife = new LoseLifeFragment();
+                            loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
-        }).start();
+        }
 
     }
 
