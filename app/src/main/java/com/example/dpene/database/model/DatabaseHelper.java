@@ -11,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper instance;
 
     private static final String DATABASE_NAME = "MOVIE_GAME_DATABASE";
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 16;
 
     // tables
     public static final String TABLE_PLAYER = "player";
@@ -29,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String EMAIL = "email";
     public static final String PL_LEVEL = "level";
     public static final String PL_QUESTION = "question";
+    public static final String LIVES = "lives";
 
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_PLAYER + " ("
             + UID_PLAYER + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -37,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + EMAIL + " TEXT UNIQUE, "
             + PL_LEVEL + " INTEGER DEFAULT 1, "
             + PL_QUESTION + " INTEGER DEFAULT 1, "
+            + LIVES + " INTEGER DEFAULT 3, "
             + "FOREIGN KEY(" + PL_QUESTION + ") REFERENCES " + TABLE_QUESTION + "(" + UID_QUESTION + ")"
             + ");";
 
@@ -88,12 +90,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    private static Context context;
-
     public static DatabaseHelper getInstance(Context context){
         if(instance == null) {
             instance = new DatabaseHelper(context);
-            context = context;
         }
         return instance;
     }
