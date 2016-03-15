@@ -29,19 +29,16 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent nextActivity;
+        Intent nextActivity = null;
         switch(v.getId()){
             default:
             case R.id.map_button:
                 nextActivity = new Intent(this, MapActivity.class);
                 break;
             case R.id.exit_button:
-                //tuk ne trqbva li da mu zadadem da izlzia ot cqloto prilojenie, a ne da se vrushta kum logIn
-                // EXIT
-                nextActivity = new Intent(this, LoginActivity.class);
+                //for now it will be blank
                 break;
             case R.id.switch_user_button:
-                // logika za izlizane
                 nextActivity = new Intent(this, LoginActivity.class);
                 break;
         }
