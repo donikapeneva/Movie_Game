@@ -5,9 +5,7 @@ package com.example.dpene.database.TODO;
  */
 public class ThingsToDoAndOtherIdeas {
 
-    //TODO da zabranim back butona
-
-    /*
+       /*
     za da ne pokazva pismoto, kogato e izgorql i se vrushta v nachaloto, moje da mu
     slojim edna buleva promenliva hasSeenMap i ako e true da ne go puska tam???!!?!?!?
      */
@@ -22,17 +20,11 @@ public class ThingsToDoAndOtherIdeas {
     zavisi rezultata ?
      */
 
-    /*
-    PlayerDAO Singleton
-     */
 
     /*
     da zapazvame progresa na playera
      */
 
-    /*
-    Back buton da go overridnem
-     */
 
     // background na regular Q
     
