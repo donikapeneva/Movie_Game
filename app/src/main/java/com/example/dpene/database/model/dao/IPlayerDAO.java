@@ -15,5 +15,6 @@ public interface IPlayerDAO {
     boolean checkUsername(String username);
     boolean checkUserEmail(String email);
     Player checkLogin (String username, String password);
+    void updatePlayer(Player player);
 
 }

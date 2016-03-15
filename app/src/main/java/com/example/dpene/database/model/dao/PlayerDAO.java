@@ -158,4 +158,22 @@ public class PlayerDAO implements IPlayerDAO {
         db.close();
         return player;
     }
+
+    @Override
+    public void updatePlayer(Player player) {
+        //UPDATE <TABLE_NAME> SET Name = 'newName' where Name=? oldNAme
+        String whereClause = dh.NAME + " = \'" + player.getName() + "\'";
+        String[] whereArgs = {player.getName()};
+        SQLiteDatabase db = dh.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(dh.PL_QUESTION, player.getReachedQuestionId());
+        values.put(dh.PL_LEVEL, player.getIdOfLevel());
+
+        db.update(dh.TABLE_PLAYER, values, dh.NAME + " =? ", whereArgs);
+
+        db.close();
+
+    }
 }
