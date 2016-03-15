@@ -16,7 +16,7 @@ public class PlayerDAO implements IPlayerDAO {
 
     private DatabaseHelper dh;
     private Context context;
-    private static PlayerDAO instance;
+    private static PlayerDAO instance = null;
 
     private PlayerDAO(Context context){
         this.context = context;
@@ -62,8 +62,9 @@ public class PlayerDAO implements IPlayerDAO {
         String email = cursor.getString(cursor.getColumnIndex(dh.EMAIL));
         int level = cursor.getInt(cursor.getColumnIndex(dh.PL_LEVEL));
         int question = cursor.getInt(cursor.getColumnIndex(dh.PL_QUESTION));
+        int lives = cursor.getInt(cursor.getColumnIndex(dh.LIVES));
 
-        Player player = new Player(email, name, password, level, question);
+        Player player = new Player(email, name, password, level, question, lives);
         db.close();
         return player;
     }
@@ -84,8 +85,9 @@ public class PlayerDAO implements IPlayerDAO {
                 String email = c.getString(c.getColumnIndex(dh.EMAIL));
                 int level = c.getInt(c.getColumnIndex(dh.PL_LEVEL));
                 int question = c.getInt(c.getColumnIndex(dh.PL_QUESTION));
+                int lives = c.getInt(c.getColumnIndex(dh.LIVES));
 
-                Player player = new Player(email, username, password, level, question);
+                Player player = new Player(email, username, password, level, question, lives);
                 players.add(player);
             } while(c.moveToNext());
         }
@@ -148,8 +150,9 @@ public class PlayerDAO implements IPlayerDAO {
             String email = c.getString(c.getColumnIndex(dh.EMAIL));
             int level = c.getInt(c.getColumnIndex(dh.PL_LEVEL));
             int question = c.getInt(c.getColumnIndex(dh.PL_QUESTION));
+            int lives = c.getInt(c.getColumnIndex(dh.LIVES));
 
-            player = new Player(email, upassword, uname, level, question);
+            player = new Player(email, upassword, uname, level, question, lives);
         }
 
         db.close();

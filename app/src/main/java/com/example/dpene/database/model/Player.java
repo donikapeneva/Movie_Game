@@ -1,13 +1,8 @@
 package com.example.dpene.database.model;
 
-import com.example.dpene.database.model.dao.RegularQuestionDAO;
-
-import java.util.List;
-
 public class Player {
 
     private static final int WON_LIVES = 2;
-    private static final int MAX_LIVES = 3;
 
     private String name;
     private String password;
@@ -20,13 +15,13 @@ public class Player {
         this.email = email;
         this.name = username;
         this.password = password;
-        this.lives = MAX_LIVES;
     }
 
-    public Player(String email, String username, String password, int reachedLevel, int reachedQuestionId) {
+    public Player(String email, String username, String password, int reachedLevel, int reachedQuestionId, int lives) {
         this(email, username, password);
         this.idOfLevel = reachedLevel;
         this.reachedQuestionId = reachedQuestionId;
+        this.lives = lives;
     }
 
     public void setReachedQuestionId(int nextQuestionId){
