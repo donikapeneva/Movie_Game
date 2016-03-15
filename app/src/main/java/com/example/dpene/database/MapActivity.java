@@ -109,12 +109,16 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 
         int currentLevel = playerManager.getLevel();
 
-        if (clickedLevel < currentLevel) {
-            Toast.makeText(MapActivity.this, "You have already passed this level", Toast.LENGTH_SHORT).show();
-        } else if (clickedLevel > currentLevel) {
-            Toast.makeText(MapActivity.this, "You haven't reached that level yet", Toast.LENGTH_SHORT).show();
+        if(playerManager.getReachedQuestionId() == 0){
+            Toast.makeText(MapActivity.this, "You have answered all the questions", Toast.LENGTH_SHORT).show();
         } else {
-            startActivity(new Intent(MapActivity.this, RegularQuestionActivity.class));
+            if (clickedLevel < currentLevel) {
+                Toast.makeText(MapActivity.this, "You have already passed this level", Toast.LENGTH_SHORT).show();
+            } else if (clickedLevel > currentLevel) {
+                Toast.makeText(MapActivity.this, "You haven't reached that level yet", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(new Intent(MapActivity.this, RegularQuestionActivity.class));
+            }
         }
     }
 }
