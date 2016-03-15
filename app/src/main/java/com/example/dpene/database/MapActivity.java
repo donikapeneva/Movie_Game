@@ -56,6 +56,13 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
         showHearts();
         this.level.setText("Level " + playerManager.getLevel());
 
+        switch(playerManager.getLevel()){
+            case 3: pathPrisonToPirate.setVisibility(View.VISIBLE);
+            case 2: pathHogwartsToPrison.setVisibility(View.VISIBLE);
+                break;
+
+        }
+
     }
 
     private void showHearts() {
