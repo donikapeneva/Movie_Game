@@ -12,6 +12,7 @@ import com.example.dpene.database.fragments.Communicator;
 import com.example.dpene.database.fragments.LoseLifeFragment;
 import com.example.dpene.database.model.PlayerManager;
 import com.example.dpene.database.model.RegularQuestion;
+import com.example.dpene.database.model.RegularQuestionManager;
 import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
 import java.util.ArrayList;
@@ -52,12 +53,11 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         heart2 = (ImageView) findViewById(R.id.heart2_reg_question);
         heart3 = (ImageView) findViewById(R.id.heart3_reg_question);
 
-        showHearts();
+       // showHearts();
 
         this.playerManager = PlayerManager.getInstance(this);
 
-        regularQuestionDAO.getInstance(this);
-        this.regularQuestion = regularQuestionDAO.getRegularQuestion(playerManager.getReachedQuestionId());
+        this.regularQuestion = RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());
 
@@ -177,11 +177,11 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     public void communicate() {
         // TODO playerManager.loseLife();
 
-        this.showHearts();
+       // this.showHearts();
     }
 
 
-    private void showHearts(){
+  /*  private void showHearts(){
         switch(playerManager.getLives()){
             case 3:
                 heart1.setVisibility(View.VISIBLE);
@@ -205,4 +205,5 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 break;
         }
     }
+    */
 }
