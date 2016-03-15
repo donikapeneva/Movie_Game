@@ -100,9 +100,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                         public void run() {
                             try {
                                 Thread.sleep(1000);
-                                //TODO show player that he goes a level up, Fragment
-                              //  Intent nextActivity = new Intent(RegularQuestionActivity.this, MapActivity.class);
-                              //  startActivity(nextActivity);
+                                Intent nextActivity = new Intent(RegularQuestionActivity.this, GoToNextLevelActivity.class);
+                                startActivity(nextActivity);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -230,25 +229,6 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             answer2_button.setText(answers.get(firstAns++));
             answer3_button.setText(answers.get(firstAns++));
             answer4_button.setText(answers.get(firstAns));
-        }
-    }
-
-    public class ShowNextQuestion extends Thread{
-
-        private Button clicked;
-
-        public ShowNextQuestion(Button clicked){
-            this.clicked = clicked;
-        }
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1000);
-                showNextQuestion();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 
