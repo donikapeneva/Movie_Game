@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -91,7 +92,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                     }
                 }).start();
             } else {
-                int reachedQuestionLevel = this.regularQuestion.getLevelId();
+                final int reachedQuestionLevel = this.regularQuestion.getLevelId();
+                Log.e("VVV", reachedQuestionLevel + "");
                 if (playerManager.goToNextLevel(reachedQuestionLevel)) {
                     //PLAYER GOES TO NEXT LEVEL
                     playerManager.setIdOfLevel(reachedQuestionLevel);
@@ -100,7 +102,13 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                         public void run() {
                             try {
                                 Thread.sleep(1000);
-                                Intent nextActivity = new Intent(RegularQuestionActivity.this, GoToNextLevelActivity.class);
+                                Intent nextActivity = null;
+                                switch(reachedQuestionLevel){
+                                    case 2: nextActivity = new Intent(RegularQuestionActivity.this, GoToSecondLevelActivity.class);
+                                        break;
+                                    case 3: nextActivity = new Intent(RegularQuestionActivity.this, GoToThirdLevelActivity.class);
+                                        break;
+                                }
                                 startActivity(nextActivity);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();

@@ -52,7 +52,7 @@ public class RegularQuestionManager {
         questions.add(q10);
 
         RegularQuestion q11 = new RegularQuestion("What is Azkaban?", "Prison", "Shop",
-                "One of Hagrid'weird creatures", "Wizarding School", 1, 12);
+                "One of Hagrid'weird creatures", "Wizarding School", 2, 12);
         questions.add(q11);
 
         RegularQuestion q12 = new RegularQuestion("What is the name of the main character in Prison Break?", "Michael Scofield", "Brad Bellick",
