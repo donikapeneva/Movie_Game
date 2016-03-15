@@ -65,6 +65,12 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        playerManager.updatePlayer();
+    }
+
     private void showHearts() {
         switch (playerManager.getLives()) {
             case 3:

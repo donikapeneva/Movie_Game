@@ -67,6 +67,12 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        playerManager.updatePlayer();
+    }
+
+    @Override
     public void onBackPressed() {
         startActivity(new Intent(RegularQuestionActivity.this, MapActivity.class));
     }
