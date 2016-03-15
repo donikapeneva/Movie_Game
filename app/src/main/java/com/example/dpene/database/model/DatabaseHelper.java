@@ -15,13 +15,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // tables
     public static final String TABLE_PLAYER = "player";
-    public static final String TABLE_LEVEL = "level";
     public static final String TABLE_QUESTION = "question";
     public static final String TABLE_LOGIC_QUESTION = "logic_question";
 
     // id-s
     public static final String UID_PLAYER = "_id";
-    public static final String UID_LEVEL = "level_id";
     public static final String UID_QUESTION = "question_id";
     public static final String UID_LOGIC_QUESTION = "logic_question_id";
 
@@ -39,20 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + EMAIL + " TEXT UNIQUE, "
             + PL_LEVEL + " INTEGER DEFAULT 1, "
             + PL_QUESTION + " INTEGER DEFAULT 1, "
-            + "FOREIGN KEY(" + PL_LEVEL + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + "), "
             + "FOREIGN KEY(" + PL_QUESTION + ") REFERENCES " + TABLE_QUESTION + "(" + UID_QUESTION + ")"
-            + ");";
-
-
-    // level table
-    private static final String LEVEL_DESCRIPTION = "description";
-    private static final String NEXT_LEVEL = "next_level";
-
-    private static final String CREATE_TABLE_LEVEL = "CREATE TABLE " + TABLE_LEVEL + " ("
-            + UID_LEVEL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + LEVEL_DESCRIPTION + " TEXT, "
-            + NEXT_LEVEL + " INTEGER, "
-            + "FOREIGN KEY(" + NEXT_LEVEL + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + ") "
             + ");";
 
     // question table
@@ -74,7 +59,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + WRONG_ANS_2 + " TEXT, "
             + WRONG_ANS_3 + " TEXT, "
             + "FOREIGN KEY(" + NEXT_QUESTION + ") REFERENCES " + TABLE_QUESTION + "(" + UID_QUESTION + "), "
-            + "FOREIGN KEY(" + LEVEL_ID + ") REFERENCES " + TABLE_LEVEL + "(" + UID_LEVEL + ") "
             + ");";
 
     // logic question table
@@ -118,7 +102,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL(CREATE_TABLE_USER);
-            db.execSQL(CREATE_TABLE_LEVEL);
             db.execSQL(CREATE_TABLE_QUESTION);
             db.execSQL(CREATE_TABLE_LOGIC_QUESTION);
             addRegularQuestions(db);
@@ -133,7 +116,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTION);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIC_QUESTION);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LEVEL);
 
         onCreate(db);
     }
