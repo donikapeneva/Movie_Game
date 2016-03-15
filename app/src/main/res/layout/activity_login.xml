@@ -22,7 +22,7 @@
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:layout_height="wrap_content"
-                android:background="@drawable/do_you_wanna_play_a_game" />
+                android:background="@drawable/play_a_game" />
 
             <LinearLayout
 
