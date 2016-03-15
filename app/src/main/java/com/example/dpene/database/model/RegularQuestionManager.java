@@ -33,7 +33,7 @@ public class RegularQuestionManager {
                 "Vernon Dursley", "Professor Dubledore", 1, 6);
         questions.add(q5);
 
-        RegularQuestion q6 = new RegularQuestion("How many ae the Harry Potter movies?", "8", "7", "5", "6", 1, 7);
+        RegularQuestion q6 = new RegularQuestion("How many are the Harry Potter movies?", "8", "7", "5", "6", 1, 7);
         questions.add(q6);
 
         RegularQuestion q7 = new RegularQuestion("What is Voldemort's real name?", "Tom Riddle", "Albus Dubledore",
@@ -43,32 +43,28 @@ public class RegularQuestionManager {
         RegularQuestion q8 = new RegularQuestion("How many horcruxes has Voldemort created?", "7", "3", "6", "5", 1, 9);
         questions.add(q8);
 
-        RegularQuestion q9 = new RegularQuestion("What is Voldemort's real name?", "Tom Riddle", "Albus Dubledore",
-                "Lucius Malfoy", "Peter Parker", 1, 10);
+        RegularQuestion q9 = new RegularQuestion("What is the name of Harry's uncle?", "Sirius Black", "Dudley Dursley",
+                "James Potter", "Uncle Ben", 1, 10);
         questions.add(q9);
 
-        RegularQuestion q10 = new RegularQuestion("What is the name of Harry's uncle?", "Sirius Black", "Dudley Dursley",
-                "James Potter", "Uncle Ben", 1, 11);
+        RegularQuestion q10 = new RegularQuestion("What is Azkaban?", "Prison", "Shop",
+                "One of Hagrid'weird creatures", "Wizarding School", 2, 11);
         questions.add(q10);
 
-        RegularQuestion q11 = new RegularQuestion("What is Azkaban?", "Prison", "Shop",
-                "One of Hagrid'weird creatures", "Wizarding School", 2, 12);
+        RegularQuestion q11 = new RegularQuestion("What is the name of the main character in Prison Break?", "Michael Scofield", "Brad Bellick",
+                "Veronica Donavan", "John Smith", 2, 12);
         questions.add(q11);
 
-        RegularQuestion q12 = new RegularQuestion("What is the name of the main character in Prison Break?", "Michael Scofield", "Brad Bellick",
-                "Veronica Donavan", "John Smith", 2, 13);
+        RegularQuestion q12 = new RegularQuestion("For what reason did Michael go to prison?", "To free his brother", "He killed two people",
+                "He was wrongly accused of murder", "He wworked there", 2, 13);
         questions.add(q12);
 
-        RegularQuestion q13 = new RegularQuestion("For what reason did Michael go to prison?", "To free his brother", "He killed two people",
-                "He was wrongly accused of murder", "He wworked there", 2, 14);
+        RegularQuestion q13 = new RegularQuestion("What is the naame of Michael's brother?", "Lincoln", "James",
+                "Robert", "Brad", 2, 14);
         questions.add(q13);
 
-        RegularQuestion q14 = new RegularQuestion("What is the naame of Michael's brother?", "Lincoln", "James",
-                "Robert", "Brad", 2, 15);
+        RegularQuestion q14 = new RegularQuestion("WHow many seasons has Prison Break?", "4", "6", "5", "3", 2, null);
         questions.add(q14);
-
-        RegularQuestion q15 = new RegularQuestion("WHow many seasons has Prison Break?", "4", "6", "5", "3", 2, null);
-        questions.add(q15);
     }
     private static RegularQuestionManager ourInstance = null;
 

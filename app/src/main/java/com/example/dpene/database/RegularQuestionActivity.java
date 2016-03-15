@@ -76,7 +76,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //UPDATE REACHED QUESTION OF THE PLAYER
             Integer nextQuestionId = this.regularQuestion.getNextQuestion();
             playerManager.setReachedQuestionId(nextQuestionId);
-            
+
             if(nextQuestionId == 0){
                 //PLAYER WON THE GAME
                 new Thread(new Runnable() {
