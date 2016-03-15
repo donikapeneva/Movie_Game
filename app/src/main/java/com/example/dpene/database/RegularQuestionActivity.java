@@ -76,8 +76,8 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
             //UPDATE REACHED QUESTION OF THE PLAYER
             Integer nextQuestionId = this.regularQuestion.getNextQuestion();
             playerManager.setReachedQuestionId(nextQuestionId);
-
-            if(nextQuestionId == null){
+            
+            if(nextQuestionId == 0){
                 //PLAYER WON THE GAME
                 new Thread(new Runnable() {
                     @Override
@@ -93,7 +93,6 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 }).start();
             } else {
                 final int reachedQuestionLevel = this.regularQuestion.getLevelId();
-                Log.e("VVV", reachedQuestionLevel + "");
                 if (playerManager.goToNextLevel(reachedQuestionLevel)) {
                     //PLAYER GOES TO NEXT LEVEL
                     playerManager.setIdOfLevel(reachedQuestionLevel);
