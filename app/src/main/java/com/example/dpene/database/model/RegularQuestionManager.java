@@ -4,14 +4,14 @@ import android.content.Context;
 
 import com.example.dpene.database.model.dao.RegularQuestionDAO;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
  * Created by dpene on 3/15/2016.
  */
 public class RegularQuestionManager {
 
-    public static HashSet<RegularQuestion> questions = new HashSet<>();
+    public static ArrayList<RegularQuestion> questions = new ArrayList<>();
     static{
         RegularQuestion q1 = new RegularQuestion("What are Harry's friend's names?", "Ron & Hermonie", "Jack & Kate",
                 "Crab & Goil", "Ross & Rachel", 1, 2);

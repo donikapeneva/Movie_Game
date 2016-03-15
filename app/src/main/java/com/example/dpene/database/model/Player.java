@@ -82,6 +82,6 @@ public class Player {
     }
 
     public int getLives() {
-        return lives;
+        return this.lives;
     }
 }
