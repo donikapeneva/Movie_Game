@@ -26,7 +26,7 @@ public class MapActivity extends AppCompatActivity {
         this.playerManager = PlayerManager.getInstance(this);
 
         this.level = (TextView) findViewById(R.id.level);
-        
+
         this.heart1 = (ImageView) findViewById(R.id.heart1);
         this.heart2 = (ImageView) findViewById(R.id.heart2);
         this.heart3 = (ImageView) findViewById(R.id.heart3);

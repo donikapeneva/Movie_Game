@@ -20,10 +20,13 @@ public class PlayerManager {
         return instance;
     }
 
-    // kogato se izvika metoda se inicializira i player-a, login vinagi minava prez metoda
     public boolean login(String username, String password) {
         this.player = playerDAO.checkLogin(username, password);
         return playerDAO.checkLogin(username, password) != null;
+    }
+
+    public void updatePlayer(){
+        playerDAO.updatePlayer(player);
     }
 
     public boolean validateUsername(String username) {
