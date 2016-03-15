@@ -3,6 +3,7 @@ package com.example.dpene.database;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -56,7 +57,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
        // showHearts();
 
         this.playerManager = PlayerManager.getInstance(this);
-
+        Log.e("VIJ ME", "" + playerManager.getReachedQuestionId());
         this.regularQuestion = RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
 
         regQuestionTextView.setText(regularQuestion.getQuestion());

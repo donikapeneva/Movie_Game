@@ -12,10 +12,7 @@ public class Player {
     private String name;
     private String password;
     private String email;
-
-    // reachedQ i reachedL defaultno = 1
-    private long idOfLevel;
-    private int reachedQuestion;
+    private int idOfLevel;
     private int reachedQuestionId;
     private int lives;
 
@@ -26,17 +23,17 @@ public class Player {
         this.lives = MAX_LIVES;
     }
 
-    public Player(String email, String username, String password, int reachedLevel, int reachedQuestion) {
+    public Player(String email, String username, String password, int reachedLevel, int reachedQuestionId) {
         this(email, username, password);
         this.idOfLevel = reachedLevel;
-        this.reachedQuestion = reachedQuestion;
+        this.reachedQuestionId = reachedQuestionId;
     }
 
     public void setReachedQuestionId(int nextQuestionId){
         this.reachedQuestionId = nextQuestionId;
     }
 
-    public void setIdOfLevel(long nextLevelId){
+    public void setIdOfLevel(int nextLevelId){
         this.idOfLevel = nextLevelId;
     }
 
@@ -51,12 +48,8 @@ public class Player {
     public String getPassword() {
         return this.password;
     }
-    public long getIdOfLevel() {
+    public int getIdOfLevel() {
         return idOfLevel;
-    }
-
-    public int getReachedQuestion() {
-        return this.reachedQuestion;
     }
 
     public int getReachedQuestionId(){

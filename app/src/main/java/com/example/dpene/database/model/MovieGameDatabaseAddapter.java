@@ -28,7 +28,7 @@ public class MovieGameDatabaseAddapter {
 
         //Git -> Some Changes in Player, Abstract Class Question
 //        values.put(MovieGameHelper.LEVEL, player.getLevel().getNumberOfLevel());
-        values.put(MovieGameHelper.QUESTION, player.getReachedQuestion());
+        values.put(MovieGameHelper.QUESTION, player.getReachedQuestionId());
 
         long userId = db.insert(MovieGameHelper.TABLE_USER, null, values);
         return userId;

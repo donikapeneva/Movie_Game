@@ -70,7 +70,7 @@ public class PlayerManager {
     }
 
     public int getQuestion() {
-        return player.getReachedQuestion();
+        return player.getReachedQuestionId();
     }
 
     public void playerWinLives() {
@@ -85,11 +85,11 @@ public class PlayerManager {
         this.player.setReachedQuestionId(nextQuestionId);
     }
 
-    public boolean goToNextLevel(long idLevel){
+    public boolean goToNextLevel(int idLevel){
         return this.player.goToNextLevel(idLevel);
     }
 
-    public void setIdOfLevel(long idLevel){
+    public void setIdOfLevel(int idLevel){
         this.player.setIdOfLevel(idLevel);
     }
 

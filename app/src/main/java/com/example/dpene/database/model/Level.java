@@ -18,7 +18,7 @@ public class Level {
     }
 
     public Question askQuestion(Player player){
-        Question current = questions.get(player.getReachedQuestion());
+        Question current = questions.get(player.getReachedQuestionId());
         System.out.println(current);
         return current;
 
