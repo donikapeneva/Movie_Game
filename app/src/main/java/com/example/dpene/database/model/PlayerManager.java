@@ -11,7 +11,7 @@ public class PlayerManager {
     private PlayerDAO playerDAO;
 
     private PlayerManager(Context context) {
-        this.playerDAO = new PlayerDAO(context);
+        this.playerDAO = PlayerDAO.getInstance(context);
     }
 
     public static PlayerManager getInstance(Context context) {

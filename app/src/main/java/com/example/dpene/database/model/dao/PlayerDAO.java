@@ -16,10 +16,18 @@ public class PlayerDAO implements IPlayerDAO {
 
     private DatabaseHelper dh;
     private Context context;
+    private static PlayerDAO instance;
 
-    public PlayerDAO(Context context){
+    private PlayerDAO(Context context){
         this.context = context;
         this.dh = DatabaseHelper.getInstance(context);
+    }
+
+    public static PlayerDAO getInstance(Context context){
+        if(instance == null){
+            return new PlayerDAO(context);
+        }
+        return instance;
     }
 
     @Override
