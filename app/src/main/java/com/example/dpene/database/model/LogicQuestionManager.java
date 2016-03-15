@@ -22,6 +22,7 @@ public class LogicQuestionManager {
     }
     private static LogicQuestionManager instance;
     private LogicQuestionDAO logicQuestionDAO;
+    private LogicQuestion currentQuestion;
 
     private LogicQuestionManager(Context context) {
         this.logicQuestionDAO = LogicQuestionDAO.getInstance(context);
@@ -35,12 +36,17 @@ public class LogicQuestionManager {
         return instance;
     }
 
-    public String getQuestion(){
-        return this.logicQuestionDAO.getLogicQuestion().getQuestion();
+    private void chooseQuestion(){
+        currentQuestion = this.logicQuestionDAO.getLogicQuestion();
+    }
+
+    public String getQuestion() {
+        chooseQuestion();
+        return this.currentQuestion.getQuestion();
     }
 
     public String getAnswer(){
-        return this.logicQuestionDAO.getLogicQuestion().getRightAnswer();
+        return this.currentQuestion.getRightAnswer();
     }
 
 
