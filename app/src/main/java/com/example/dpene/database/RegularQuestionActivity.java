@@ -31,6 +31,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     private ImageView heart1;
     private ImageView heart2;
     private ImageView heart3;
+    Button clicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         this.playerManager = PlayerManager.getInstance(this);
         this.regularQuestion = RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
 
-        ShowQuestionTask sqt = new ShowQuestionTask();
+        ShowQuestionTask sqt = new ShowQuestionTask(false);
         sqt.execute();
 
         showHearts();
@@ -66,7 +67,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-       Button clicked = (Button) view;
+       clicked = (Button) view;
         if (clicked.getText().toString().equals(rightAnswer)) {
             //CHANGE THE COLOR OF THE BUTTON TO GREEN (for right answer)
             clicked.setBackgroundResource(R.color.rightAnswer);
@@ -109,8 +110,7 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                     }).start();
                 } else {
                     //SHOW THE NEXT QUESTION
-                    ShowNextQuestion snq = new ShowNextQuestion(clicked);
-                    snq.start();
+                    showNextQuestion();
                 }
             }
         } else {
@@ -135,33 +135,17 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
                 }).start();
             } else {
             // SHOW THE PLAYER THAT HE HAS LOST A LIFE THEN HE GOES TO THE NEXT QUESTION
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(1000);
-                            LoseLifeFragment loseLife = new LoseLifeFragment();
-                            loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
-                          //  returnButton(clicked);
-                            showNextQuestion();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                LoseLifeFragment loseLife = new LoseLifeFragment();
+                loseLife.show(getSupportFragmentManager(), "loseLifeDialog");
+                showNextQuestion();
             }
         }
 
     }
 
-    public void returnButton(Button b){
-        b = (Button)findViewById(b.getId());
-    }
-
-
     public void showNextQuestion(){
         this.regularQuestion =  RegularQuestionManager.getInstance().getRegularQuestion(this, playerManager.getReachedQuestionId());
-        ShowQuestionTask task = new ShowQuestionTask();
+        ShowQuestionTask task = new ShowQuestionTask(true);
         task.execute();
     }
 
@@ -199,10 +183,26 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
     public class ShowQuestionTask extends AsyncTask<Void, Void, Void> {
 
         ArrayList<String> answers;
+        boolean changeColor;
+
+        public ShowQuestionTask(boolean changeColor){
+           this.changeColor = changeColor;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            if(changeColor)
+                clicked.setBackgroundResource(R.color.regularQButton);
+        }
 
         @Override
         protected Void doInBackground(Void... params) {
 
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             rightAnswer = regularQuestion.getRightAnswer();
 
             this.answers = new ArrayList<String>();
@@ -242,7 +242,6 @@ public class RegularQuestionActivity extends AppCompatActivity implements View.O
         public void run() {
             try {
                 Thread.sleep(1000);
-                returnButton(clicked);
                 showNextQuestion();
             } catch (InterruptedException e) {
                 e.printStackTrace();
