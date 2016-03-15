@@ -5,6 +5,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.dpene.database.model.dao.IRegularQuestionDAO;
+import com.example.dpene.database.model.dao.RegularQuestionDAO;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static DatabaseHelper instance;
@@ -90,20 +93,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String INSERT_INTO_QUESTION = "INSERT INTO " + TABLE_QUESTION
             + " (" + NEXT_QUESTION + ", " + LEVEL_ID + ", " + QUESTION_TEXT + ", " + RIGHT_ANS + ", "
             + WRONG_ANS_1 + ", " + WRONG_ANS_2 + ", " + WRONG_ANS_3 + ") VALUES" +
-            " (2, 1, What are Harry's friend's names?, Ron & Hermonie, Jack & Kate, Crab & Goil, Ross & Rachel)," +
-            " (3, 1, Who gave Harry his scar?, Voldemort, Malfoy, Dudley, The Whomping Willow)," +
-            " (4, 1, What house is Harry in?, Gryffindor, Slytherin, Ravenclaw, Hufflepuff)," +
-            " (5, 1, Where do wizards buy their things?, Diagon Ally, Wizarding Lane, Magic Street, Mystic Road)," +
-            " (6, 1, Who bought Hedwig for Harry?, Rubeus Hagrid, Professor McGonagall, Vernon Dursley, Professor Dubledore)," +
-            " (7, 1, How many ae the Harry Potter movies?, 8, 7, 5, 6)," +
-            " (8, 1, What is Voldemort's real name?, Tom Riddle, Albus Dumbledore, Lucius Malfoy, Peter Parker)," +
-            " (9, 1, How many horcruxes has Voldemort created?, 7, 3, 6, 5)," +
-            " (10, 1, What is the naame of Harry's uncle?, Sirius Black, Dudley Dursley, James Potter, Uncle Ben)," +
-            " (11, 1, What is Azkaban?, Prison, Shop, One of Hagrid'weird creatures, Wizarding School)," +
-            " (12, 2, What is the name of the main character in Prison Break?, Michael Scofield, Brad Bellick, Veronica Donavan, John Smith)," +
-            " (13, 2, For what reason did Michael go to prison?, To free his brother, He killed two people, He was wrongly accused of murder, He wworked there)," +
-            " (14, 2, What is the naame of Michael's brother?, Lincoln, Jaes, Robert, Brad)," +
-            " (1, 2, How many seasons has Prison Break?, 4, 6, 5, 3);";
+//            " (2, 1, What are Harry's friend's names?, Ron & Hermonie, Jack & Kate, Crab & Goil, Ross & Rachel)," +
+//            " (3, 1, Who gave Harry his scar?, Voldemort, Malfoy, Dudley, The Whomping Willow)," +
+//            " (4, 1, What house is Harry in?, Gryffindor, Slytherin, Ravenclaw, Hufflepuff)," +
+//            " (5, 1, Where do wizards buy their things?, Diagon Ally, Wizarding Lane, Magic Street, Mystic Road)," +
+//            " (6, 1, Who bought Hedwig for Harry?, Rubeus Hagrid, Professor McGonagall, Vernon Dursley, Professor Dubledore)," +
+//            " (7, 1, How many ae the Harry Potter movies?, 8, 7, 5, 6)," +
+//            " (8, 1, What is Voldemort's real name?, Tom Riddle, Albus Dumbledore, Lucius Malfoy, Peter Parker)," +
+//            " (9, 1, How many horcruxes has Voldemort created?, 7, 3, 6, 5)," +
+//            " (10, 1, What is the naame of Harry's uncle?, Sirius Black, Dudley Dursley, James Potter, Uncle Ben)," +
+//            " (11, 1, What is Azkaban?, Prison, Shop, One of Hagrid'weird creatures, Wizarding School)," +
+//            " (12, 2, What is the name of the main character in Prison Break?, Michael Scofield, Brad Bellick, Veronica Donavan, John Smith)," +
+//            " (13, 2, For what reason did Michael go to prison?, To free his brother, He killed two people, He was wrongly accused of murder, He wworked there)," +
+//            " (14, 2, What is the naame of Michael's brother?, Lincoln, Jaes, Robert, Brad)," +
+            " (\"1\", \"2\", \"How many seasons has Prison Break?\", \"4\", \"6\", \"5\", \"3\");";
     //long cannot be null, so the last question will point to the first question
 
     private static final String INSERT_INTO_LOGIC_QUESTION = "INSERT INTO " + TABLE_LOGIC_QUESTION
@@ -138,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_TABLE_LEVEL);
             db.execSQL(CREATE_TABLE_QUESTION);
             db.execSQL(CREATE_TABLE_LOGIC_QUESTION);
-            db.execSQL(INSERT_INTO_QUESTION);
+            RegularQuestionDAO.
             db.execSQL(INSERT_INTO_LOGIC_QUESTION);
         } catch (SQLException e) {
         }

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.dpene.database.model.DatabaseHelper;
 import com.example.dpene.database.model.RegularQuestion;
+import com.example.dpene.database.model.RegularQuestionManager;
 
 /**
  * Created by Golemanovaa on 13.3.2016 г..
@@ -26,20 +27,22 @@ public class RegularQuestionDAO implements IRegularQuestionDAO {
     public long addRegularQuestion(RegularQuestion regQuestion) {
         SQLiteDatabase db = dh.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
+        for(RegularQuestion q : RegularQuestionManager.questions){
+            ContentValues values = new ContentValues();
 
-        values.put(dh.QUESTION_TEXT, regQuestion.getQuestion());
-        values.put(dh.RIGHT_ANS, regQuestion.getRightAnswer());
+            values.put(dh.QUESTION_TEXT, regQuestion.getQuestion());
+            values.put(dh.RIGHT_ANS, regQuestion.getRightAnswer());
 
-        String[] wrongAns = regQuestion.getWrongAnswers();
-        values.put(dh.WRONG_ANS_1, wrongAns[0]);
-        values.put(dh.WRONG_ANS_2, wrongAns[1]);
-        values.put(dh.WRONG_ANS_3, wrongAns[2]);
+            String[] wrongAns = regQuestion.getWrongAnswers();
+            values.put(dh.WRONG_ANS_1, wrongAns[0]);
+            values.put(dh.WRONG_ANS_2, wrongAns[1]);
+            values.put(dh.WRONG_ANS_3, wrongAns[2]);
 
-        values.put(dh.NEXT_QUESTION, regQuestion.getNextQuestion());
-        values.put(dh.LEVEL_ID, regQuestion.getLevelId());
+            values.put(dh.NEXT_QUESTION, regQuestion.getNextQuestion());
+            values.put(dh.LEVEL_ID, regQuestion.getLevelId());
 
-        long regQuestionId = db.insert(dh.TABLE_QUESTION, null, values);
+            long regQuestionId = db.insert(dh.TABLE_QUESTION, null, values);
+        }
         db.close();
 
         regQuestion.setQuestionId(regQuestionId);
