@@ -16,6 +16,7 @@ public class LogicQuestionManager {
     private LogicQuestionManager(Context context) {
         this.logicQuestionDAO = LogicQuestionDAO.getInstance(context);
 
+        questions = new HashSet<>();
         questions.add(new LogicQuestion("Are you stupid?", "yes"));
         questions.add(new LogicQuestion("Are you stupid_2", "yes_2"));
         questions.add(new LogicQuestion("Are you stupid_3", "yes_3"));
