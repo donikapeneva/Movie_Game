@@ -30,4 +30,11 @@ public class ThingsToDoAndOtherIdeas {
     da zapazvame progresa na playera
      */
 
+    /*
+    Back buton da go overridnem
+     */
+
+    // background na regular Q
+    
+
 }
