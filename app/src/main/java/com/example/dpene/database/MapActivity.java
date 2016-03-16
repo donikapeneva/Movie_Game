@@ -127,4 +127,9 @@ public class MapActivity extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(MapActivity.this, MenuActivity.class));
+    }
 }
