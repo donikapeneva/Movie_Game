@@ -42,7 +42,7 @@ public class LoadingActivity extends AppCompatActivity {
                     }
                 }
 
-                if(playerManager.getLevel() == 1){
+                if(playerManager.getReachedQuestionId() == 1){
                     startActivity(new Intent(LoadingActivity.this, LetterActivity.class));
                 }
                 else{
